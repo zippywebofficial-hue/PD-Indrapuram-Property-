@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PD INDIRAPURAM | Luxury Real Estate</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- GSAP & Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        body { background-color: #0d0d0d; color: #ffffff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        .gold-gradient { background: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .gold-border { border: 1px solid rgba(191, 149, 63, 0.3); }
+        .glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        #canvas-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; }
+    </style>
+</head>
+<body class="relative">
+
+    <!-- 3D Background Canvas -->
+    <div id="canvas-container"></div>
+
+    <!-- Navigation Bar -->
+    <nav class="flex justify-between items-center px-6 py-5 max-w-7xl mx-auto border-b border-white/10">
+        <h1 class="text-xl font-bold tracking-widest gold-gradient">PD INDIRAPURAM</h1>
+        <a href="https://wa.me/?text=Hi%20PD%20Indirapuram,%20I%20want%20to%20enquire%20about%20luxury%20properties" target="_blank" class="px-5 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-amber-500 to-yellow-600 text-black hover:opacity-90 transition">Contact Agent</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-[85vh] flex flex-col justify-center items-center text-center px-4 relative">
+        <span class="text-xs uppercase tracking-[0.3em] text-amber-400 mb-4 font-semibold">Quintessential Property Dealer</span>
+        <h1 class="text-4xl md:text-7xl font-extrabold tracking-tight max-w-4xl leading-tight mb-6">
+            Discover Exceptional <span class="gold-gradient">Flats & Luxury Villas</span> In Indirapuram
+        </h1>
+        <p class="text-gray-400 text-sm md:text-lg max-w-2xl mb-8 leading-relaxed">
+            Providing premium single rooms, luxury flats, and independent villas tailored to your lifestyle. Rated 4.7★ by 120+ happy clients.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+            <a href="#properties" class="px-8 py-4 rounded-xl font-semibold bg-white text-black hover:bg-gray-200 transition text-center">Explore Properties</a>
+            <a href="https://wa.me/?text=Hi%20I%20am%20looking%20for%20a%20property%20in%20Indirapuram" class="px-8 py-4 rounded-xl font-semibold glass-card gold-border text-amber-300 hover:bg-white/5 transition text-center">Instant WhatsApp Enquiry</a>
+        </div>
+    </section>
+
+    <!-- Property Listings Section -->
+    <section id="properties" class="max-w-7xl mx-auto px-6 py-20">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-5xl font-bold mb-4">Featured <span class="gold-gradient">Listings</span></h2>
+            <p class="text-gray-400 text-sm">Handpicked premium residences in prime locations</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Card 1 -->
+            <div class="glass-card rounded-2xl overflow-hidden gold-border hover:scale-[1.02] transition duration-300">
+                <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80" alt="Luxury Villa" class="w-full h-56 object-cover">
+                <div class="p-6">
+                    <span class="text-xs font-bold uppercase tracking-wider text-amber-400">Independent Villa</span>
+                    <h3 class="text-xl font-bold mt-2 mb-2">Ultra Luxury 4BHK Villa</h3>
+                    <p class="text-gray-400 text-xs mb-4">Prime Location, Indirapuram • Italian Marble • Modular Kitchen</p>
+                    <div class="flex justify-between items-center border-t border-white/10 pt-4">
+                        <span class="text-lg font-bold gold-gradient">₹2.85 Cr</span>
+                        <a href="https://wa.me/" class="text-xs font-semibold text-amber-400 hover:underline">Book Site Visit →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="glass-card rounded-2xl overflow-hidden gold-border hover:scale-[1.02] transition duration-300">
+                <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80" alt="Premium Flat" class="w-full h-56 object-cover">
+                <div class="p-6">
+                    <span class="text-xs font-bold uppercase tracking-wider text-amber-400">Builder Floor</span>
+                    <h3 class="text-xl font-bold mt-2 mb-2">Modern 3BHK Apartment</h3>
+                    <p class="text-gray-400 text-xs mb-4">Gated Community • 24/7 Security • Lift & Covered Parking</p>
+                    <div class="flex justify-between items-center border-t border-white/10 pt-4">
+                        <span class="text-lg font-bold gold-gradient">₹1.15 Cr</span>
+                        <a href="https://wa.me/" class="text-xs font-semibold text-amber-400 hover:underline">Book Site Visit →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="glass-card rounded-2xl overflow-hidden gold-border hover:scale-[1.02] transition duration-300">
+                <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" alt="Studio Flat" class="w-full h-56 object-cover">
+                <div class="p-6">
+                    <span class="text-xs font-bold uppercase tracking-wider text-amber-400">Single Room / Studio</span>
+                    <h3 class="text-xl font-bold mt-2 mb-2">Furnished Luxury Studio</h3>
+                    <p class="text-gray-400 text-xs mb-4">Ready to Move • Near Metro • Complete Interiors Included</p>
+                    <div class="flex justify-between items-center border-t border-white/10 pt-4">
+                        <span class="text-lg font-bold gold-gradient">₹45 Lakhs</span>
+                        <a href="https://wa.me/" class="text-xs font-semibold text-amber-400 hover:underline">Book Site Visit →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center py-8 border-t border-white/10 text-xs text-gray-500">
+        <p>© 2026 PD INDIRAPURAM. Crafted by <span class="text-amber-400">Zippy Web Agency</span></p>
+    </footer>
+
+    <!-- Three.js Interactive Particle Background Script -->
+    <script>
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+        // Gold Particle Sphere
+        const geometry = new THREE.BufferGeometry();
+        const count = 700;
+        const positions = new Float32Array(count * 3);
+
+        for(let i = 0; i < count * 3; i++) {
+            positions[i] = (Math.random() - 0.5) * 12;
+        }
+
+        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        const material = new THREE.PointsMaterial({ size: 0.025, color: 0xbf953f });
+        const particles = new THREE.Points(geometry, material);
+        scene.add(particles);
+
+        camera.position.z = 4;
+
+        // Animation Loop
+        function animate() {
+            requestAnimationFrame(animate);
+            particles.rotation.y += 0.0015;
+            particles.rotation.x += 0.0008;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Responsive Resizing
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+</html>
