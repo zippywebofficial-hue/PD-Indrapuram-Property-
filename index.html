@@ -3,192 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PD INDIRAPURAM | Architectural Mastery</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <title>PD Indirapuram | Ultra-Luxury Real Estate</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Space+Grotesk:wght@300;500;700&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cinzel', 'Poppins', sans-serif; }
+        body { background-color: #080808; color: #f0f0f0; overflow-x: hidden; }
+
+        /* VIP Header Video Banner */
+        .hero { position: relative; height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; }
+        .hero video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; filter: brightness(35%); }
+        .hero-overlay { background: radial-gradient(circle, rgba(0,0,0,0.2) 0%, rgba(8,8,8,0.95) 100%); position: absolute; width: 100%; height: 100%; }
         
-        body {
-            background-color: #050505;
-            color: #ffffff;
-            font-family: 'Space Grotesk', sans-serif;
-            overflow-x: hidden;
-        }
-        .title-font { font-family: 'Syncopate', sans-serif; }
-        #webgl-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 1;
-            pointer-events: none;
-        }
-        .content-layer {
-            position: relative;
-            z-index: 10;
-        }
-        .glass-panel {
-            background: rgba(15, 15, 20, 0.6);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 215, 0, 0.15);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.1);
-        }
-        .gold-glow {
-            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
-        }
-        .gold-text {
-            background: linear-gradient(135deg, #FFF6BD 0%, #D4AF37 50%, #AA7C11 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+        .hero-title { z-index: 2; padding: 20px; }
+        .hero-title h1 { font-size: 3.2rem; color: #d4af37; letter-spacing: 3px; text-transform: uppercase; text-shadow: 0 0 20px rgba(212,175,55,0.4); }
+        .hero-title p { font-size: 1.2rem; color: #cccccc; margin-top: 10px; font-weight: 300; letter-spacing: 1px; }
+
+        /* Showcase Section */
+        .container { padding: 60px 20px; max-width: 1200px; margin: auto; }
+        .section-title { text-align: center; font-size: 2.2rem; color: #d4af37; margin-bottom: 40px; text-transform: uppercase; letter-spacing: 2px; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .card { background: #121212; border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 15px; overflow: hidden; transition: 0.4s; }
+        .card:hover { transform: translateY(-10px); border-color: #d4af37; box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2); }
+        .card-img { width: 100%; height: 220px; object-fit: cover; }
+        .card-body { padding: 25px; text-align: left; }
+        .card-body h3 { color: #d4af37; font-size: 1.4rem; margin-bottom: 10px; }
+        .card-body p { color: #aaaaaa; font-size: 0.95rem; line-height: 1.6; }
+
+        /* Sticky Call Buttons */
+        .floating-cta { position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%); display: flex; gap: 15px; z-index: 999; }
+        .cta-btn { padding: 14px 28px; border-radius: 50px; font-weight: 600; text-decoration: none; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; transition: 0.3s; }
+        .btn-call { background: linear-gradient(135deg, #d4af37, #aa7c11); color: #000; box-shadow: 0 4px 20px rgba(212,175,55,0.4); }
+        .btn-whatsapp { background: #25d366; color: #fff; box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
     </style>
 </head>
 <body>
 
-    <canvas id="webgl-canvas"></canvas>
+    <!-- Hero Section with Space-to-Earth Video -->
+    <section class="hero">
+        <video autoplay loop muted playsinline>
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-modern-architecture-of-a-skyscraper-42838-large.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-title">
+            <h1>Apex D'Rio & Saya Gold</h1>
+            <p>Indirapuram's Most Elite International Residences</p>
+        </div>
+    </section>
 
-    <div class="content-layer">
-        <!-- Header -->
-        <nav class="flex justify-between items-center px-8 py-6 max-w-7xl mx-auto">
-            <div class="title-font text-xl font-bold tracking-tighter gold-text">PD INDIRAPURAM</div>
-            <a href="https://wa.me/" class="px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest bg-gradient-to-r from-amber-400 to-yellow-600 text-black hover:scale-105 transition">Inquire Now</a>
-        </nav>
-
-        <!-- Hero Section -->
-        <section class="h-screen flex flex-col justify-center items-center text-center px-4">
-            <p class="text-amber-400 text-xs font-bold uppercase tracking-[0.4em] mb-4 gold-glow">Ultra-Luxury Real Estate</p>
-            <h1 class="title-font text-4xl sm:text-7xl font-extrabold uppercase tracking-tight max-w-5xl leading-none mb-6">
-                ARCHITECTURAL <br><span class="gold-text">PERFECTION</span>
-            </h1>
-            <p class="text-gray-400 text-sm sm:text-base max-w-xl mb-10 font-light tracking-wide">
-                Experience bespoke living spaces, modern villas, and premier luxury flats in the heart of Indirapuram.
-            </p>
-            <div class="animate-bounce text-amber-400 text-xs uppercase tracking-widest font-bold">
-                Scroll to Explore ↓
-            </div>
-        </section>
-
-        <!-- 3D Interactive Project Highlight -->
-        <section class="min-h-screen flex items-center justify-center px-6 py-20">
-            <div class="glass-panel p-8 sm:p-12 rounded-3xl max-w-4xl w-full border-amber-500/30">
-                <span class="text-amber-400 text-xs font-bold tracking-widest uppercase">Signature Listing</span>
-                <h2 class="title-font text-3xl sm:text-5xl font-bold mt-2 mb-6 gold-text">THE ROYAL PALACE</h2>
-                <p class="text-gray-300 text-sm leading-relaxed mb-8">
-                    An architectural marvel featuring private infinity pools, smart home automation, and panoramic views of Indirapuram. Designed exclusively for ultra-high-net-worth individuals.
-                </p>
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8 border-y border-white/10 py-6">
-                    <div><p class="text-xs text-gray-500">SQ FT</p><p class="text-lg font-bold">6,500+</p></div>
-                    <div><p class="text-xs text-gray-500">BEDROOMS</p><p class="text-lg font-bold">5 Ultra Suites</p></div>
-                    <div><p class="text-xs text-gray-500">PRICE</p><p class="text-lg font-bold gold-text">₹4.25 Cr</p></div>
-                    <div><p class="text-xs text-gray-500">RATING</p><p class="text-lg font-bold">4.9 ★★★★★</p></div>
+    <!-- Luxury Showcase -->
+    <div class="container">
+        <h2 class="section-title">Exclusive Property Features</h2>
+        <div class="grid">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80" class="card-img" alt="Penthouse">
+                <div class="card-body">
+                    <h3>Penthouse & Spiral Staircase</h3>
+                    <p>Double-height ceiling architectures, premium marble finishes, and panoramic skyline views.</p>
                 </div>
-                <a href="https://wa.me/" class="inline-block w-full text-center py-4 rounded-xl font-bold text-xs uppercase tracking-widest bg-white text-black hover:bg-amber-400 transition">Request Private Tour</a>
             </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="text-center py-12 border-t border-white/10 text-xs text-gray-600">
-            © 2026 PD INDIRAPURAM • HIGH-END 3D DIGITAL EXPERIENCE
-        </footer>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" class="card-img" alt="Gazebo">
+                <div class="card-body">
+                    <h3>Rooftop Gazebo & Pool Deck</h3>
+                    <p>Private outdoor evening lounges, infinity pools, and high-end party ambience.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80" class="card-img" alt="Gold Elevator">
+                <div class="card-body">
+                    <h3>Gold Accent Elevators</h3>
+                    <p>High-speed luxury elevators with personalized direct floor access control.</p>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- 3D Scene Script -->
-    <script>
-        gsap.registerPlugin(ScrollTrigger);
+    <!-- Floating Action Buttons -->
+    <div class="floating-cta">
+        <a href="tel:9990345444" class="cta-btn btn-call">📞 Call VIP Desk</a>
+        <a href="https://wa.me/919990345444?text=Hi,%20I%20am%20interested%20in%20Apex%20DRio%20luxury%20properties." class="cta-btn btn-whatsapp">💬 WhatsApp Direct</a>
+    </div>
 
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('webgl-canvas'), antialias: true, alpha: true });
-        
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-        // Create 3D Geometric Architectural Wireframe Mesh
-        const geometry = new THREE.IcosahedronGeometry(2, 2);
-        const material = new THREE.MeshPhysicalMaterial({
-            color: 0xd4af37,
-            wireframe: true,
-            emissive: 0x221a00,
-            roughness: 0.2,
-            metalness: 0.8
-        });
-        const buildingMesh = new THREE.Mesh(geometry, material);
-        scene.add(buildingMesh);
-
-        // Gold Floating Particles System
-        const particlesGeo = new THREE.BufferGeometry();
-        const count = 1500;
-        const posArray = new Float32Array(count * 3);
-        for(let i=0; i<count*3; i++) {
-            posArray[i] = (Math.random() - 0.5) * 15;
-        }
-        particlesGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-        const particlesMat = new THREE.PointsMaterial({ size: 0.015, color: 0xffd700 });
-        const particlesMesh = new THREE.Points(particlesGeo, particlesMat);
-        scene.add(particlesMesh);
-
-        // Lighting Setup
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
-        scene.add(ambientLight);
-        const pointLight = new THREE.PointLight(0xffd700, 2);
-        pointLight.position.set(5, 5, 5);
-        scene.add(pointLight);
-
-        camera.position.z = 5;
-
-        // Mouse Parallax Effect
-        let mouseX = 0, mouseY = 0;
-        window.addEventListener('mousemove', (e) => {
-            mouseX = (e.clientX / window.innerWidth - 0.5) * 0.5;
-            mouseY = (e.clientY / window.innerHeight - 0.5) * 0.5;
-        });
-
-        // GSAP Scroll Animation Trigger
-        gsap.to(buildingMesh.rotation, {
-            y: Math.PI * 2,
-            x: Math.PI,
-            scrollTrigger: {
-                trigger: "body",
-                start: "top top",
-                end: "bottom bottom",
-                scrub: 1.5
-            }
-        });
-
-        gsap.to(camera.position, {
-            z: 2.5,
-            scrollTrigger: {
-                trigger: "body",
-                start: "top top",
-                end: "bottom bottom",
-                scrub: 1.5
-            }
-        });
-
-        // Animation Render Loop
-        function animate() {
-            requestAnimationFrame(animate);
-            buildingMesh.rotation.y += 0.003;
-            particlesMesh.rotation.y -= 0.0005;
-            
-            // Smooth mouse sway
-            camera.position.x += (mouseX - camera.position.x) * 0.05;
-            camera.position.y += (-mouseY - camera.position.y) * 0.05;
-
-            renderer.render(scene, camera);
-        }
-        animate();
-
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
-    </script>
 </body>
 </html>
