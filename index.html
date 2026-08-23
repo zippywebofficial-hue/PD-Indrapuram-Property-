@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PD INDIRAPURAM | Ultra Luxury Real Estate</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -14,105 +13,144 @@
 </head>
 <body class="bg-[#0B0B0E] text-[#F5F5F7] selection:bg-[#D4AF37] selection:text-black">
 
-    <!-- Navbar -->
-    <nav class="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-[#0B0B0E]/80 border-b border-[#D4AF37]/20 px-6 py-4 flex justify-between items-center">
+    <!-- Top Bar / Navbar -->
+    <nav class="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-[#0B0B0E]/90 border-b border-[#D4AF37]/20 px-4 py-3 flex justify-between items-center">
         <div class="flex items-center gap-2">
-            <div class="w-3 h-3 rounded-full bg-[#D4AF37] animate-ping"></div>
-            <span class="font-serif text-lg tracking-wider text-[#D4AF37] font-bold">PD INDIRAPURAM</span>
+            <div class="w-2.5 h-2.5 rounded-full bg-[#D4AF37] animate-ping"></div>
+            <span class="font-serif text-base md:text-lg tracking-wider text-[#D4AF37] font-bold">PD INDIRAPURAM</span>
         </div>
-        <a href="tel:9990345444" class="bg-gradient-to-r from-[#D4AF37] to-[#AA7C11] text-black px-4 py-2 rounded-full font-semibold text-xs tracking-wider uppercase">
-            📞 Call Now
-        </a>
+        <div class="flex gap-2">
+            <a href="tel:9990345444" class="bg-[#D4AF37] text-black px-3 py-1.5 rounded-full font-bold text-[10px] tracking-wider uppercase">📞 Call</a>
+            <a href="https://wa.me/919990345444" class="bg-[#25D366] text-white px-3 py-1.5 rounded-full font-bold text-[10px] tracking-wider uppercase">💬 WhatsApp</a>
+        </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative h-screen flex items-center justify-center text-center px-4 bg-cover bg-center" style="background: linear-gradient(180deg, rgba(11,11,14,0.7) 0%, #0B0B0E 100%), url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;">
-        <div class="max-w-3xl z-10 pt-16">
-            <div class="inline-block border border-[#D4AF37]/40 backdrop-blur-xl bg-black/40 px-4 py-1.5 rounded-full mb-6">
-                <span class="text-[#D4AF37] text-xs uppercase tracking-widest">★ 4.7 Stars | 129 Google Reviews</span>
+    <section class="relative h-screen flex items-center justify-center text-center px-4 pt-16 bg-cover bg-center" style="background: linear-gradient(180deg, rgba(11,11,14,0.6) 0%, #0B0B0E 100%), url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;">
+        <div class="max-w-3xl z-15">
+            <div class="inline-block border border-[#D4AF37]/40 backdrop-blur-xl bg-black/50 px-4 py-1.5 rounded-full mb-4">
+                <span class="text-[#D4AF37] text-[11px] uppercase tracking-widest font-medium">★ 4.7 Stars | 129 Verified Google Reviews</span>
             </div>
-            <h1 class="font-serif text-4xl md:text-6xl font-light text-white tracking-tight leading-tight mb-4">
+            <h1 class="font-serif text-3xl md:text-6xl font-light text-white tracking-tight leading-tight mb-3">
                 PD INDIRAPURAM <br>
                 <span class="italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] via-white to-[#D4AF37]">
                     Ultra Luxury Real Estate
                 </span>
             </h1>
-            <p class="text-gray-300 text-sm md:text-base max-w-xl mx-auto mb-8 font-light">
-                Real Estate Consultant in Ghaziabad, Uttar Pradesh | Sale, Purchase & Renting
+            <p class="text-gray-300 text-xs md:text-sm max-w-lg mx-auto mb-6 font-light leading-relaxed">
+                Real estate consultant in Ghaziabad, Uttar Pradesh | Sale, Purchase & Renting. Serves Ahinsa Khand 1 and nearby areas. Open 24 Hours.
             </p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="https://wa.me/919990345444?text=Hi,%20I%20want%20to%20inquire%20about%20properties." class="bg-[#25D366] text-white px-7 py-3 rounded-full font-medium text-xs tracking-wide shadow-lg">
+            <div class="flex flex-wrap justify-center gap-3">
+                <a href="https://wa.me/919990345444?text=Hi,%20I%20want%20to%20book%20a%20VIP%20Appointment." class="bg-[#25D366] text-white px-6 py-3 rounded-full font-medium text-xs tracking-wide shadow-lg">
                     💬 WhatsApp Direct
                 </a>
-                <a href="tel:9990345444" class="border border-[#D4AF37] bg-black/30 text-[#D4AF37] px-7 py-3 rounded-full font-medium text-xs tracking-wide">
+                <a href="tel:9990345444" class="border border-[#D4AF37] bg-black/40 text-[#D4AF37] px-6 py-3 rounded-full font-medium text-xs tracking-wide">
                     📞 +91 99903 45444
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Flagship Projects -->
-    <section class="py-20 px-6 max-w-7xl mx-auto">
-        <h2 class="font-serif text-3xl md:text-4xl text-[#D4AF37] text-center mb-12 uppercase tracking-wider">Flagship Developments</h2>
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="border border-[#D4AF37]/30 bg-[#121217] rounded-2xl overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80" alt="Apex D'Rio" class="w-full h-56 object-cover">
-                <div class="p-6">
-                    <h3 class="font-serif text-xl text-[#D4AF37] mb-2">Apex D'Rio</h3>
-                    <p class="text-gray-400 text-xs leading-relaxed">Duplex penthouses, floating spiral staircases, double-height ceilings, and private sky balconies.</p>
+    <!-- Flagship Featured Projects -->
+    <section class="py-16 px-4 max-w-7xl mx-auto">
+        <h2 class="font-serif text-2xl md:text-4xl text-[#D4AF37] text-center mb-10 uppercase tracking-wider">Flagship Developments</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+            <!-- Apex D'Rio -->
+            <div class="border border-[#D4AF37]/30 bg-[#121217] rounded-2xl overflow-hidden shadow-xl">
+                <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80" alt="Apex D'Rio" class="w-full h-52 object-cover">
+                <div class="p-5">
+                    <span class="text-[10px] text-[#D4AF37] uppercase tracking-widest font-mono">Indirapuram, Ghaziabad</span>
+                    <h3 class="font-serif text-xl text-[#D4AF37] mt-1 mb-2">Apex D'Rio</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">Ultra-luxury high-rise tower featuring private glass balconies, duplex penthouses, floating spiral staircases, double-height ceiling living rooms, and infinity pools.</p>
                 </div>
             </div>
-            <div class="border border-[#D4AF37]/30 bg-[#121217] rounded-2xl overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80" alt="Saya Gold Avenue" class="w-full h-56 object-cover">
-                <div class="p-6">
-                    <h3 class="font-serif text-xl text-[#D4AF37] mb-2">Saya Gold Avenue</h3>
-                    <p class="text-gray-400 text-xs leading-relaxed">High-speed elevators, ambient false-ceiling architecture, Italian marble flooring, and smart access.</p>
+            <!-- Saya Gold Avenue -->
+            <div class="border border-[#D4AF37]/30 bg-[#121217] rounded-2xl overflow-hidden shadow-xl">
+                <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80" alt="Saya Gold Avenue" class="w-full h-52 object-cover">
+                <div class="p-5">
+                    <span class="text-[10px] text-[#D4AF37] uppercase tracking-widest font-mono">Ahinsa Khand 1</span>
+                    <h3 class="font-serif text-xl text-[#D4AF37] mt-1 mb-2">Saya Gold Avenue</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">Premium residential apartments showcasing modern architecture, luxury elevators, custom false-ceiling lights, and Italian marble flooring.</p>
                 </div>
             </div>
-            <div class="border border-[#D4AF37]/30 bg-[#121217] rounded-2xl overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" alt="Sky Villas" class="w-full h-56 object-cover">
-                <div class="p-6">
-                    <h3 class="font-serif text-xl text-[#D4AF37] mb-2">5BHK Rooftop Sky Villas</h3>
-                    <p class="text-gray-400 text-xs leading-relaxed">Private outdoor gazebo decks, evening party lounges, infinity pool setups, and home theater walls.</p>
+            <!-- 5BHK Villas -->
+            <div class="border border-[#D4AF37]/30 bg-[#121217] rounded-2xl overflow-hidden shadow-xl">
+                <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" alt="Sky Villas" class="w-full h-52 object-cover">
+                <div class="p-5">
+                    <span class="text-[10px] text-[#D4AF37] uppercase tracking-widest font-mono">Exclusive Listing</span>
+                    <h3 class="font-serif text-xl text-[#D4AF37] mt-1 mb-2">5BHK Rooftop Gazebo Villas</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">Luxury properties equipped with private outdoor gazebos, rooftop lounge lighting, marble bathrooms with glass showers, and home theater walls.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Matrix -->
-    <section class="py-20 bg-[#08080A] border-t border-b border-[#D4AF37]/20 px-6">
-        <div class="max-w-7xl mx-auto text-center">
-            <h2 class="font-serif text-3xl md:text-4xl text-[#D4AF37] mb-4 uppercase">Complete Service Matrix</h2>
-            <p class="text-gray-400 text-xs mb-12">End-to-End Real Estate Consulting (Sale, Purchase, Renting & Commercial)</p>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-left">
-                <div class="border border-white/5 bg-[#121217] p-4 rounded-xl"><p class="text-gray-300 text-xs">Appraisals & Valuations</p></div>
-                <div class="border border-white/5 bg-[#121217] p-4 rounded-xl"><p class="text-gray-300 text-xs">Buying & Sales Assistance</p></div>
-                <div class="border border-white/5 bg-[#121217] p-4 rounded-xl"><p class="text-gray-300 text-xs">Commercial Property Consulting</p></div>
-                <div class="border border-white/5 bg-[#121217] p-4 rounded-xl"><p class="text-gray-300 text-xs">Luxury Properties Buying & Sales</p></div>
-                <div class="border border-white/5 bg-[#121217] p-4 rounded-xl"><p class="text-gray-300 text-xs">Mortgage & Lending Services</p></div>
-                <div class="border border-white/5 bg-[#121217] p-4 rounded-xl"><p class="text-gray-300 text-xs">Property Leasing & Management</p></div>
-                <div class="border border-white/5 bg-[#121217] p-4 rounded-xl"><p class="text-gray-300 text-xs">Investment Consulting</p></div>
-                <div class="border border-white/5 bg-[#121217] p-4 rounded-xl"><p class="text-gray-300 text-xs">First-time Home Buyer Services</p></div>
+    <!-- Complete Service Matrix (All 19 Services Retained) -->
+    <section class="py-16 bg-[#08080A] border-t border-b border-[#D4AF37]/20 px-4">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="font-serif text-2xl md:text-4xl text-[#D4AF37] text-center mb-3 uppercase">Complete Service Matrix</h2>
+            <p class="text-center text-gray-400 text-xs mb-10">All 19 Professional Real Estate Consulting Services</p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <div class="border border-white/5 bg-[#121217] p-3.5 rounded-xl"><p class="text-gray-300 text-xs">1. Appraisals</p></div>
+                <div class="border border-white/5 bg-[#121217] p-3.5 rounded-xl"><p class="text-gray-300 text-xs">2. Buying & Sales Assistance</p></div>
+                <div class="border border-white/5 bg-[#121217] p-3.5 rounded-xl"><p class="text-gray-300 text-xs">3. Commercial Property Buying, Sales & Consulting</p></div>
+                <div class="border border-white/5 bg-[#121217] p-3.5 rounded-xl"><p class="text-gray-300 text-xs">4. Comparative Property Market Analysis</p></div>
+                <div class="border border-white/5 bg-[#121217] p-3.5 rounded-xl"><p class="text-gray-300 text-xs">5. Condo Buying & Sales Assistance</p></div>
+                <div class="border border-white/5 bg-[#121217] p-3.5 rounded-xl"><p class="text-gray-300 text-xs">6. First-time Home Buyer Services</p></div>
+                <div class="border border-white/5 bg-[#121217] p-3.5 rounded-xl"><p class="text-gray-300 text-xs">7. Foreclosed Property Sales</p></div>
+                <div class="border border-white/5 bg-[#121217] p-3.5 rounded-xl"><p class="text-gray-300 text-xs">8. Home Staging & Photography</p></div>
+                <div class="border border-white/5 bg-[#121217] p-3.5 rounded-xl"><p class="text-gray-300 text-xs">9. International Property Buying & Sales</p></div>
+                <div class="border border-white/5 bg-[#121217] p-3.5 rounded-xl"><p class="text-gray-300 text-xs">10. Land Buying & Sales</p></div>
+                <div class="border border-white/5 bg-[#121217] p-3.5 rounded-xl"><p class="text-gray-300 text-xs">11. Luxury Properties Buying & Sales</p></div>
+                <div class="border border-white/5 bg-[#121217] p-3.5 rounded-xl"><p class="text-gray-300 text-xs">12. Mortgage & Lending Services</p></div>
+                <div class="border border-white/5 bg-[#121217] p-3.5 rounded-xl"><p class="text-gray-300 text-xs">13. New Construction Services</p></div>
+                <div class="border border-white/5 bg-[#121217] p-3.5 rounded-xl"><p class="text-gray-300 text-xs">14. Property Leasing, Management & Rental</p></div>
+                <div class="border border-white/5 bg-[#121217] p-3.5 rounded-xl"><p class="text-gray-300 text-xs">15. Property Development Consulting</p></div>
+                <div class="border border-white/5 bg-[#121217] p-3.5 rounded-xl"><p class="text-gray-300 text-xs">16. Property Investment Consulting</p></div>
+                <div class="border border-white/5 bg-[#121217] p-3.5 rounded-xl"><p class="text-gray-300 text-xs">17. Property Marketing</p></div>
+                <div class="border border-white/5 bg-[#121217] p-3.5 rounded-xl"><p class="text-gray-300 text-xs">18. Residential Property Consulting</p></div>
+                <div class="border border-white/5 bg-[#121217] p-3.5 rounded-xl col-span-2 md:col-span-1"><p class="text-gray-300 text-xs">19. Seller's Agent Services</p></div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="py-20 px-6 max-w-4xl mx-auto">
-        <div class="border border-[#D4AF37]/40 bg-[#121217] rounded-3xl p-8 md:p-12">
-            <div class="text-center mb-8">
-                <h3 class="font-serif text-2xl text-[#D4AF37] mb-2">PD INDIRAPURAM</h3>
-                <p class="text-gray-400 text-xs">G 10, Arora Shoppers Park, Shakti Khand 2, Indirapuram, Ghaziabad, UP 201014</p>
-                <p class="text-gray-300 text-xs mt-2">📞 +91 9990345444 | 🕒 Open 24 Hours</p>
+    <!-- Client Testimonials & Social Proof -->
+    <section class="py-16 px-4 max-w-5xl mx-auto">
+        <h2 class="font-serif text-2xl md:text-4xl text-[#D4AF37] text-center mb-8 uppercase tracking-wider">Client Trust & Reviews</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+            <div class="border border-[#D4AF37]/20 bg-[#121217] p-5 rounded-2xl">
+                <p class="text-[#D4AF37] text-xs mb-2">★★★★★ (Local Guide)</p>
+                <p class="text-gray-300 text-xs italic mb-3">"Professional, honest, and extremely knowledgeable about Indirapuram properties. Helped me secure a great deal."</p>
+                <p class="text-gray-400 text-[11px] font-semibold">— Sachin Yadav</p>
             </div>
-            <div class="flex justify-center gap-4">
-                <a href="tel:9990345444" class="bg-[#D4AF37] text-black font-semibold px-6 py-3 rounded-xl text-xs uppercase tracking-wider">Call Now</a>
-                <a href="https://wa.me/919990345444" class="bg-[#25D366] text-white font-semibold px-6 py-3 rounded-xl text-xs uppercase tracking-wider">WhatsApp</a>
+            <div class="border border-[#D4AF37]/20 bg-[#121217] p-5 rounded-2xl">
+                <p class="text-[#D4AF37] text-xs mb-2">★★★★★ (Verified Client)</p>
+                <p class="text-gray-300 text-xs italic mb-3">"Helped me find the right property within my budget with seamless paperwork and guidance."</p>
+                <p class="text-gray-400 text-[11px] font-semibold">— Raj Singh</p>
             </div>
         </div>
     </section>
 
-    <footer class="border-t border-white/10 py-6 text-center text-xs text-gray-500">
+    <!-- VIP Contact Suite & Metadata -->
+    <section class="py-16 px-4 max-w-4xl mx-auto">
+        <div class="border border-[#D4AF37]/40 bg-[#121217] rounded-3xl p-6 md:p-10 shadow-2xl">
+            <h3 class="font-serif text-2xl text-[#D4AF37] text-center mb-2">PD INDIRAPURAM</h3>
+            <p class="text-gray-400 text-xs text-center mb-6">G 10, Arora Shoppers Park, Shakti Khand 2, Indirapuram, Ghaziabad, UP 201014</p>
+            
+            <div class="space-y-2 text-xs text-center mb-8 text-gray-300">
+                <p>Primary Numbers: <span class="text-white font-medium">+91 099903 45444</span>, <span class="text-white font-medium">+91 9990345444</span>, <span class="text-white font-medium">+91 8587972593</span></p>
+                <p>Operating Hours: <span class="text-white font-medium">Open 24 Hours</span> | Online Appointments & On-site Services</p>
+                <p>Instagram Handle: <span class="text-[#D4AF37]">@pd_indirapuram_property_dealer</span></p>
+            </div>
+
+            <div class="flex flex-col sm:flex-row justify-center gap-3">
+                <a href="tel:9990345444" class="bg-[#D4AF37] text-black font-semibold py-3 px-6 rounded-xl text-xs uppercase tracking-wider text-center">📞 Call Now</a>
+                <a href="https://wa.me/919990345444" class="bg-[#25D366] text-white font-semibold py-3 px-6 rounded-xl text-xs uppercase tracking-wider text-center">💬 WhatsApp Inquiry</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-t border-white/10 py-6 text-center text-[11px] text-gray-500">
         © 2026 PD INDIRAPURAM Property Dealer. All Rights Reserved.
     </footer>
 
