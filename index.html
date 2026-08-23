@@ -1,289 +1,120 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, Float, MeshDistortMaterial, Text, PerspectiveCamera } from '@react-three/drei';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PD INDIRAPURAM | Ultra Luxury Real Estate</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0B0B0E; color: #F5F5F7; }
+        .font-serif { font-family: 'Cormorant Garamond', serif; }
+    </style>
+</head>
+<body class="bg-[#0B0B0E] text-[#F5F5F7] selection:bg-[#D4AF37] selection:text-black">
 
-gsap.registerPlugin(ScrollTrigger);
-
-// --- 3D Scene Elements ---
-function PenthouseScene() {
-  const meshRef = useRef();
-
-  useFrame((state) => {
-    const t = state.clock.getElapsedTime();
-    if (meshRef.current) {
-      meshRef.current.rotation.y = t * 0.15;
-    }
-  });
-
-  return (
-    <group>
-      {/* Dynamic Ambient Luxury Lighting */}
-      <ambientLight intensity={0.6} />
-      <directionalLight position={[10, 15, 10]} color="#D4AF37" intensity={1.5} />
-      <pointLight position={[-10, -10, -10]} color="#0B0B0E" intensity={1} />
-
-      {/* Floating Abstract 3D Glass & Gold Core (Dubai Architecture Abstract) */}
-      <Float speed={2} rotationIntensity={0.5} floatIntensity={1}>
-        <mesh ref={meshRef} scale={2.2}>
-          <icosahedronGeometry args={[1, 15]} />
-          <MeshDistortMaterial
-            color="#D4AF37"
-            envMapIntensity={1}
-            clearcoat={1}
-            clearcoatRoughness={0.1}
-            metalness={0.9}
-            roughness={0.1}
-            distort={0.25}
-            speed={1.5}
-          />
-        </mesh>
-      </Float>
-    </group>
-  );
-}
-
-// --- Main Application Component ---
-export default function App() {
-  const heroRef = useRef(null);
-  const [activeTab, setActiveTab] = useState('Overview');
-
-  const businessInfo = {
-    name: "PD INDIRAPURAM property dealer",
-    tagline: "Real Estate Consultant in Ghaziabad | Sale, Purchase & Renting",
-    rating: "4.7 Stars (129 Verified Google Reviews)",
-    phones: ["+91 099903 45444", "+91 9990345444", "+91 8587972593"],
-    address: "G 10, Arora Shoppers Park, Shakti Khand 2, Indirapuram, Ghaziabad, UP 201014",
-    services: [
-      "Appraisals", "Buying & Sales Assistance", "Commercial Property Buying & Sales",
-      "Comparative Market Analysis", "Condo Buying & Sales", "First-time Home Buyer Services",
-      "Foreclosed Property Sales", "Home Staging & Photography", "International Buying & Sales",
-      "Land Buying & Sales", "Luxury Properties Buying & Sales", "Mortgage & Lending Services",
-      "New Construction Services", "Property Leasing & Management", "Property Development Consulting",
-      "Property Investment Consulting", "Property Marketing", "Residential Property Consulting", "Seller's Agent Services"
-    ]
-  };
-
-  useEffect(() => {
-    // GSAP ScrollTrigger Animations setup
-    gsap.to('.hero-text', {
-      scrollTrigger: {
-        trigger: heroRef.current,
-        start: 'top top',
-        end: 'bottom top',
-        scrub: true,
-      },
-      y: -100,
-      opacity: 0,
-    });
-  }, []);
-
-  return (
-    <div className="bg-[#0B0B0E] text-[#F5F5F7] font-sans antialiased selection:bg-[#D4AF37] selection:text-black">
-      
-      {/* VIP Glassmorphism Navbar */}
-      <nav className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-[#0B0B0E]/70 border-b border-[#D4AF37]/20 px-8 py-4 flex justify-between items-center">
-        <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded-full bg-[#D4AF37] animate-ping" />
-          <span className="font-serif text-xl tracking-wider text-[#D4AF37] font-bold">PD INDIRAPURAM</span>
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-[#0B0B0E]/80 border-b border-[#D4AF37]/20 px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center gap-2">
+            <div class="w-3 h-3 rounded-full bg-[#D4AF37] animate-ping"></div>
+            <span class="font-serif text-lg tracking-wider text-[#D4AF37] font-bold">PD INDIRAPURAM</span>
         </div>
-        <div className="hidden md:flex gap-8 text-sm uppercase tracking-widest text-gray-300">
-          <a href="#hero" className="hover:text-[#D4AF37] transition">Home</a>
-          <a href="#properties" className="hover:text-[#D4AF37] transition">Projects</a>
-          <a href="#services" className="hover:text-[#D4AF37] transition">19 Services</a>
-          <a href="#contact" className="hover:text-[#D4AF37] transition">VIP Contact</a>
-        </div>
-        <a 
-          href="tel:9990345444" 
-          className="bg-gradient-to-r from-[#D4AF37] to-[#AA7C11] text-black px-5 py-2 rounded-full font-semibold text-xs tracking-wider uppercase hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] transition"
-        >
-          📞 VIP Call Desk
+        <a href="tel:9990345444" class="bg-gradient-to-r from-[#D4AF37] to-[#AA7C11] text-black px-4 py-2 rounded-full font-semibold text-xs tracking-wider uppercase">
+            📞 Call Now
         </a>
-      </nav>
+    </nav>
 
-      {/* Section 1: Hero Scene (3D WebGL Canvas) */}
-      <section id="hero" ref={heroRef} className="relative h-screen w-full flex items-center justify-center overflow-hidden">
-        {/* WebGL Canvas */}
-        <div className="absolute inset-0 z-0">
-          <Canvas>
-            <PerspectiveCamera makeDefault position={[0, 0, 5]} />
-            <PenthouseScene />
-            <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} />
-          </Canvas>
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center justify-center text-center px-4 bg-cover bg-center" style="background: linear-gradient(180deg, rgba(11,11,14,0.7) 0%, #0B0B0E 100%), url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;">
+        <div class="max-w-3xl z-10 pt-16">
+            <div class="inline-block border border-[#D4AF37]/40 backdrop-blur-xl bg-black/40 px-4 py-1.5 rounded-full mb-6">
+                <span class="text-[#D4AF37] text-xs uppercase tracking-widest">★ 4.7 Stars | 129 Google Reviews</span>
+            </div>
+            <h1 class="font-serif text-4xl md:text-6xl font-light text-white tracking-tight leading-tight mb-4">
+                PD INDIRAPURAM <br>
+                <span class="italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] via-white to-[#D4AF37]">
+                    Ultra Luxury Real Estate
+                </span>
+            </h1>
+            <p class="text-gray-300 text-sm md:text-base max-w-xl mx-auto mb-8 font-light">
+                Real Estate Consultant in Ghaziabad, Uttar Pradesh | Sale, Purchase & Renting
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="https://wa.me/919990345444?text=Hi,%20I%20want%20to%20inquire%20about%20properties." class="bg-[#25D366] text-white px-7 py-3 rounded-full font-medium text-xs tracking-wide shadow-lg">
+                    💬 WhatsApp Direct
+                </a>
+                <a href="tel:9990345444" class="border border-[#D4AF37] bg-black/30 text-[#D4AF37] px-7 py-3 rounded-full font-medium text-xs tracking-wide">
+                    📞 +91 99903 45444
+                </a>
+            </div>
         </div>
+    </section>
 
-        {/* Hero Glass UI Overlay */}
-        <div className="hero-text z-10 text-center max-w-4xl px-4 pointer-events-none">
-          <div className="inline-block border border-[#D4AF37]/40 backdrop-blur-xl bg-black/40 px-4 py-1.5 rounded-full mb-6">
-            <span className="text-[#D4AF37] text-xs uppercase tracking-widest">★ 4.7 Stars | 129 Google Reviews</span>
-          </div>
-          <h1 className="font-serif text-5xl md:text-7xl font-light text-white tracking-tight leading-tight mb-4">
-            PD INDIRAPURAM <br />
-            <span className="italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] via-[#FFF] to-[#D4AF37]">
-              Ultra Luxury Real Estate
-            </span>
-          </h1>
-          <p className="text-gray-400 text-sm md:text-base max-w-2xl mx-auto mb-8 font-light tracking-wide">
-            {businessInfo.tagline}
-          </p>
-
-          <div className="pointer-events-auto flex flex-wrap justify-center gap-4">
-            <a 
-              href="https://wa.me/919990345444?text=Hi,%20I%20want%20to%20book%20a%20VIP%203D%20Tour." 
-              className="bg-[#25D366] text-white px-8 py-3.5 rounded-full font-medium text-sm tracking-wide shadow-lg hover:bg-emerald-600 transition"
-            >
-              💬 WhatsApp Direct
-            </a>
-            <a 
-              href="tel:9990345444" 
-              className="border border-[#D4AF37] backdrop-blur-md bg-black/30 text-[#D4AF37] px-8 py-3.5 rounded-full font-medium text-sm tracking-wide hover:bg-[#D4AF37] hover:text-black transition"
-            >
-              📞 Call Now
-            </a>
-          </div>
+    <!-- Flagship Projects -->
+    <section class="py-20 px-6 max-w-7xl mx-auto">
+        <h2 class="font-serif text-3xl md:text-4xl text-[#D4AF37] text-center mb-12 uppercase tracking-wider">Flagship Developments</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="border border-[#D4AF37]/30 bg-[#121217] rounded-2xl overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80" alt="Apex D'Rio" class="w-full h-56 object-cover">
+                <div class="p-6">
+                    <h3 class="font-serif text-xl text-[#D4AF37] mb-2">Apex D'Rio</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">Duplex penthouses, floating spiral staircases, double-height ceilings, and private sky balconies.</p>
+                </div>
+            </div>
+            <div class="border border-[#D4AF37]/30 bg-[#121217] rounded-2xl overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80" alt="Saya Gold Avenue" class="w-full h-56 object-cover">
+                <div class="p-6">
+                    <h3 class="font-serif text-xl text-[#D4AF37] mb-2">Saya Gold Avenue</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">High-speed elevators, ambient false-ceiling architecture, Italian marble flooring, and smart access.</p>
+                </div>
+            </div>
+            <div class="border border-[#D4AF37]/30 bg-[#121217] rounded-2xl overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" alt="Sky Villas" class="w-full h-56 object-cover">
+                <div class="p-6">
+                    <h3 class="font-serif text-xl text-[#D4AF37] mb-2">5BHK Rooftop Sky Villas</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">Private outdoor gazebo decks, evening party lounges, infinity pool setups, and home theater walls.</p>
+                </div>
+            </div>
         </div>
-      </section>
+    </section>
 
-      {/* Section 2: Flagship Projects */}
-      <section id="properties" className="py-24 px-8 max-w-7xl mx-auto">
-        <h2 className="font-serif text-3xl md:text-5xl text-[#D4AF37] text-center mb-16 uppercase tracking-wider">
-          Flagship Developments
-        </h2>
-
-        <div className="grid md:grid-cols-3 gap-8">
-          {/* Apex D'Rio */}
-          <div className="border border-[#D4AF37]/30 bg-[#121217] rounded-2xl overflow-hidden group hover:border-[#D4AF37] transition duration-500">
-            <div className="h-64 overflow-hidden relative">
-              <img 
-                src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80" 
-                alt="Apex D'Rio" 
-                className="w-full h-full object-cover group-hover:scale-110 transition duration-700"
-              />
-              <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-md border border-[#D4AF37]/50 px-3 py-1 rounded-full text-[10px] text-[#D4AF37] uppercase">
-                Ultra-Luxury High-Rise
-              </div>
+    <!-- Services Matrix -->
+    <section class="py-20 bg-[#08080A] border-t border-b border-[#D4AF37]/20 px-6">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="font-serif text-3xl md:text-4xl text-[#D4AF37] mb-4 uppercase">Complete Service Matrix</h2>
+            <p class="text-gray-400 text-xs mb-12">End-to-End Real Estate Consulting (Sale, Purchase, Renting & Commercial)</p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-left">
+                <div class="border border-white/5 bg-[#121217] p-4 rounded-xl"><p class="text-gray-300 text-xs">Appraisals & Valuations</p></div>
+                <div class="border border-white/5 bg-[#121217] p-4 rounded-xl"><p class="text-gray-300 text-xs">Buying & Sales Assistance</p></div>
+                <div class="border border-white/5 bg-[#121217] p-4 rounded-xl"><p class="text-gray-300 text-xs">Commercial Property Consulting</p></div>
+                <div class="border border-white/5 bg-[#121217] p-4 rounded-xl"><p class="text-gray-300 text-xs">Luxury Properties Buying & Sales</p></div>
+                <div class="border border-white/5 bg-[#121217] p-4 rounded-xl"><p class="text-gray-300 text-xs">Mortgage & Lending Services</p></div>
+                <div class="border border-white/5 bg-[#121217] p-4 rounded-xl"><p class="text-gray-300 text-xs">Property Leasing & Management</p></div>
+                <div class="border border-white/5 bg-[#121217] p-4 rounded-xl"><p class="text-gray-300 text-xs">Investment Consulting</p></div>
+                <div class="border border-white/5 bg-[#121217] p-4 rounded-xl"><p class="text-gray-300 text-xs">First-time Home Buyer Services</p></div>
             </div>
-            <div className="p-6">
-              <h3 className="font-serif text-2xl text-[#D4AF37] mb-2">Apex D'Rio</h3>
-              <p className="text-gray-400 text-xs leading-relaxed mb-4">
-                Duplex penthouses, floating spiral staircases, double-height ceilings, and private sky balconies.
-              </p>
-              <span className="text-xs text-[#D4AF37] tracking-widest uppercase">Indirapuram, Ghaziabad →</span>
-            </div>
-          </div>
-
-          {/* Saya Gold Avenue */}
-          <div className="border border-[#D4AF37]/30 bg-[#121217] rounded-2xl overflow-hidden group hover:border-[#D4AF37] transition duration-500">
-            <div className="h-64 overflow-hidden relative">
-              <img 
-                src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80" 
-                alt="Saya Gold Avenue" 
-                className="w-full h-full object-cover group-hover:scale-110 transition duration-700"
-              />
-              <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-md border border-[#D4AF37]/50 px-3 py-1 rounded-full text-[10px] text-[#D4AF37] uppercase">
-                Modern Residences
-              </div>
-            </div>
-            <div className="p-6">
-              <h3 className="font-serif text-2xl text-[#D4AF37] mb-2">Saya Gold Avenue</h3>
-              <p className="text-gray-400 text-xs leading-relaxed mb-4">
-                High-speed elevators, ambient false-ceiling architecture, Italian marble flooring, and smart access.
-              </p>
-              <span className="text-xs text-[#D4AF37] tracking-widest uppercase">Ahinsa Khand 1 →</span>
-            </div>
-          </div>
-
-          {/* 5BHK Rooftop Gazebo Villas */}
-          <div className="border border-[#D4AF37]/30 bg-[#121217] rounded-2xl overflow-hidden group hover:border-[#D4AF37] transition duration-500">
-            <div className="h-64 overflow-hidden relative">
-              <img 
-                src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" 
-                alt="Rooftop Gazebo Villas" 
-                className="w-full h-full object-cover group-hover:scale-110 transition duration-700"
-              />
-              <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-md border border-[#D4AF37]/50 px-3 py-1 rounded-full text-[10px] text-[#D4AF37] uppercase">
-                Sky Villas
-              </div>
-            </div>
-            <div className="p-6">
-              <h3 className="font-serif text-2xl text-[#D4AF37] mb-2">5BHK Rooftop Sky Villas</h3>
-              <p className="text-gray-400 text-xs leading-relaxed mb-4">
-                Private outdoor gazebo decks, evening party lounges, infinity pool setups, and home theater walls.
-              </p>
-              <span className="text-xs text-[#D4AF37] tracking-widest uppercase">Exclusive Listing →</span>
-            </div>
-          </div>
         </div>
-      </section>
+    </section>
 
-      {/* Section 3: 19 Services Catalog */}
-      <section id="services" className="py-24 bg-[#08080A] border-t border-b border-[#D4AF37]/20 px-8">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="font-serif text-3xl md:text-5xl text-[#D4AF37] text-center mb-4 uppercase">
-            Complete Service Matrix
-          </h2>
-          <p className="text-center text-gray-400 text-sm mb-16">End-to-End Real Estate Consulting (19 Specialized Categories)</p>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {businessInfo.services.map((service, index) => (
-              <div key={index} className="border border-white/5 bg-[#121217] p-4 rounded-xl hover:border-[#D4AF37]/60 transition">
-                <span className="text-[#D4AF37] text-xs font-mono mb-2 block">0{index + 1}</span>
-                <p className="text-gray-300 text-xs font-medium">{service}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Section 4: VIP Contact Suite */}
-      <section id="contact" className="py-24 px-8 max-w-5xl mx-auto">
-        <div className="border border-[#D4AF37]/40 bg-[#121217] rounded-3xl p-8 md:p-12 shadow-[0_0_50px_rgba(212,175,55,0.1)]">
-          <div className="grid md:grid-cols-2 gap-12">
-            <div>
-              <h3 className="font-serif text-3xl text-[#D4AF37] mb-4">PD INDIRAPURAM</h3>
-              <p className="text-gray-400 text-xs leading-relaxed mb-6">
-                {businessInfo.address}
-              </p>
-              <div className="space-y-3 text-sm">
-                <p className="text-gray-300">📞 <span className="text-white">+91 99903 45444</span></p>
-                <p className="text-gray-300">📞 <span className="text-white">+91 85879 72593</span></p>
-                <p className="text-gray-300">🕒 <span className="text-white">Open 24 Hours</span></p>
-                <p className="text-gray-300">📍 <span className="text-white">Serves Ahinsa Khand 1 & Nearby Areas</span></p>
-              </div>
+    <!-- Contact Section -->
+    <section class="py-20 px-6 max-w-4xl mx-auto">
+        <div class="border border-[#D4AF37]/40 bg-[#121217] rounded-3xl p-8 md:p-12">
+            <div class="text-center mb-8">
+                <h3 class="font-serif text-2xl text-[#D4AF37] mb-2">PD INDIRAPURAM</h3>
+                <p class="text-gray-400 text-xs">G 10, Arora Shoppers Park, Shakti Khand 2, Indirapuram, Ghaziabad, UP 201014</p>
+                <p class="text-gray-300 text-xs mt-2">📞 +91 9990345444 | 🕒 Open 24 Hours</p>
             </div>
-
-            <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
-              <input 
-                type="text" 
-                placeholder="Your Full Name" 
-                className="w-full bg-[#0B0B0E] border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:border-[#D4AF37] outline-none" 
-              />
-              <input 
-                type="tel" 
-                placeholder="Phone Number" 
-                className="w-full bg-[#0B0B0E] border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:border-[#D4AF37] outline-none" 
-              />
-              <textarea 
-                rows="3" 
-                placeholder="Project Requirement (Apex D'Rio / Saya Gold / Sky Villa)" 
-                className="w-full bg-[#0B0B0E] border border-white/10 rounded-xl px-4 py-3 text-xs text-white focus:border-[#D4AF37] outline-none"
-              ></textarea>
-              <button 
-                type="submit" 
-                className="w-full bg-gradient-to-r from-[#D4AF37] to-[#AA7C11] text-black font-semibold py-3.5 rounded-xl text-xs uppercase tracking-wider hover:opacity-90 transition"
-              >
-                Book VIP Consultation
-              </button>
-            </form>
-          </div>
+            <div class="flex justify-center gap-4">
+                <a href="tel:9990345444" class="bg-[#D4AF37] text-black font-semibold px-6 py-3 rounded-xl text-xs uppercase tracking-wider">Call Now</a>
+                <a href="https://wa.me/919990345444" class="bg-[#25D366] text-white font-semibold px-6 py-3 rounded-xl text-xs uppercase tracking-wider">WhatsApp</a>
+            </div>
         </div>
-      </section>
+    </section>
 
-      {/* Footer */}
-      <footer className="border-t border-white/10 py-8 text-center text-xs text-gray-500">
-        © 2026 PD INDIRAPURAM Property Dealer. All Rights Reserved. Engineered by Zippy Web Agency.
-      </footer>
-    </div>
-  );
-}
+    <footer class="border-t border-white/10 py-6 text-center text-xs text-gray-500">
+        © 2026 PD INDIRAPURAM Property Dealer. All Rights Reserved.
+    </footer>
+
+</body>
+</html>
