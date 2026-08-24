@@ -49,6 +49,13 @@
             font-weight: 800;
             box-shadow: 0 0 25px rgba(212, 175, 55, 0.8);
         }
+
+        /* Cyberpunk Luxury Hero Animation Background */
+        .hero-bg-animated {
+            background: radial-gradient(circle at 50% 30%, rgba(212, 175, 55, 0.15) 0%, rgba(3, 6, 4, 0.95) 70%),
+                        linear-gradient(180deg, rgba(3,6,4,0.4) 0%, #030604 100%),
+                        url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+        }
     </style>
 </head>
 <body class="bg-[#030604] text-[#F5F5F7] selection:bg-[#D4AF37] selection:text-black">
@@ -70,15 +77,8 @@
         </div>
     </nav>
 
-    <!-- Ultra Hero Section with Video Background -->
-    <section class="relative h-screen flex items-center justify-center text-center px-4 pt-16 overflow-hidden">
-        <!-- Optimized Cloud HD Video Background -->
-        <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none">
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-modern-apartment-building-exterior-41549-large.mp4" type="video/mp4">
-        </video>
-        <!-- Dark Overlay for Readability -->
-        <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-[#030604] z-0"></div>
-
+    <!-- Ultra Luxury Hero Section -->
+    <section class="hero-bg-animated relative h-screen flex items-center justify-center text-center px-4 pt-16 overflow-hidden">
         <div class="max-w-4xl z-10">
             <div class="inline-block border border-[#D4AF37] backdrop-blur-xl bg-black/60 px-6 py-2 rounded-full mb-5 shadow-[0_0_25px_rgba(212,175,55,0.3)]">
                 <span class="gold-text text-xs uppercase tracking-widest font-bold">🏆 Premier Real Estate Hub | Flats, Buildings & Lands</span>
@@ -111,7 +111,7 @@
             <p class="text-gray-400 text-xs max-w-lg mx-auto mb-10">Connect instantly through our interactive channels & Google Maps desk.</p>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Instagram SVG Button -->
+                <!-- Instagram Button -->
                 <a href="https://ig.me/m/pd_indirapuram_property_dealer" target="_blank" class="btn-futuristic-3d p-5 rounded-2xl flex items-center justify-between group">
                     <div class="flex items-center gap-4">
                         <div class="p-3 rounded-xl bg-gradient-to-tr from-yellow-500 via-pink-500 to-purple-600 shadow-lg">
@@ -125,7 +125,7 @@
                     <span class="gold-text text-lg group-hover:translate-x-2 transition">➔</span>
                 </a>
 
-                <!-- WhatsApp SVG Button -->
+                <!-- WhatsApp Button -->
                 <a href="https://wa.me/919990345444?text=Greetings%20PD%20INDIRAPURAM,%20I%20want%20to%20book%20a%20Private%20Property%20Tour." target="_blank" class="btn-futuristic-3d p-5 rounded-2xl flex items-center justify-between group border-[#25D366]/60">
                     <div class="flex items-center gap-4">
                         <div class="p-3 rounded-xl bg-[#25D366] text-white shadow-lg shadow-[#25D366]/30">
@@ -139,7 +139,7 @@
                     <span class="text-[#25D366] text-lg group-hover:translate-x-2 transition">➔</span>
                 </a>
 
-                <!-- Google Maps SVG Button -->
+                <!-- Google Maps Button -->
                 <a href="https://maps.app.goo.gl/PDINDIRAPURAM" target="_blank" onclick="window.open('https://www.google.com/maps/search/PD+INDIRAPURAM+property+dealer+Shakti+Khand+2+Indirapuram', '_blank'); return false;" class="btn-futuristic-3d p-5 rounded-2xl flex items-center justify-between group border-blue-500/60">
                     <div class="flex items-center gap-4">
                         <div class="p-3 rounded-xl bg-gradient-to-tr from-blue-600 to-cyan-400 text-white shadow-lg shadow-blue-500/30">
@@ -156,9 +156,9 @@
         </div>
     </section>
 
-    <!-- Dynamic Multi-Tab System -->
+    <!-- Multi-Tab System -->
     <section class="py-12 px-4 max-w-7xl mx-auto">
-        <div class="flex overflow-x-auto gap-3 pb-4 justify-start md:justify-center border-b border-[#D4AF37]/20 no-scrollbar">
+        <div class="flex overflow-x-auto gap-3 pb-4 justify-start md:justify-center border-b border-[#D4AF37]/20">
             <button id="btn-properties-tab" onclick="switchTab('properties-tab')" class="tab-btn active border border-[#D4AF37]/40 px-6 py-3 rounded-2xl text-xs uppercase tracking-wider font-extrabold whitespace-nowrap transition">
                 🏢 Expanded Property Portfolio
             </button>
@@ -173,7 +173,7 @@
             </button>
         </div>
 
-        <!-- TAB 1: EXPANDED PROPERTY PORTFOLIO -->
+        <!-- TAB 1: PROPERTY PORTFOLIO -->
         <div id="properties-tab" class="tab-content py-8">
             <h2 class="font-syne text-3xl md:text-5xl gold-text text-center mb-2 uppercase font-extrabold">Complete Property Catalogue</h2>
             <p class="text-center text-gray-400 text-xs mb-10">Flats, Luxury Penthouses, Commercial Buildings, Agricultural Lands & Khet (Buy, Sell & Rent)</p>
@@ -227,7 +227,7 @@
                     </div>
                 </div>
 
-                <!-- Agricultural Khet / Farmhouse Land -->
+                <!-- Agricultural Land -->
                 <div class="futuristic-card rounded-3xl overflow-hidden cursor-pointer group" onclick="openModal('Agricultural Lands & Khet', 'NCR Outskirts & Prime Expressway Zones', 'Fertile agricultural land, highway connectivity, clear title deeds, ideal for farmhouses, future developments, or long-term land banking.', '₹50 Lakhs per Acre onwards', 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80', ['Clear Title Deed', 'Highway Access', 'Water Connection', 'Fertile Soil'])">
                     <div class="relative overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80" class="w-full h-60 object-cover group-hover:scale-110 transition duration-500">
@@ -259,7 +259,7 @@
                     </div>
                 </div>
 
-                <!-- Independent Plots / Land -->
+                <!-- Independent Plots -->
                 <div class="futuristic-card rounded-3xl overflow-hidden cursor-pointer group" onclick="openModal('Freehold Residential Plots', 'Ghaziabad Sector Zones', 'GDA approved freehold residential plots, Gated community, ready for immediate construction.', '₹1.2 Cr onwards', 'https://images.unsplash.com/photo-1524813686514-a57563d77965?auto=format&fit=crop&w=800&q=80', ['GDA Approved', 'Freehold Title', 'Gated Community', 'Immediate Registry'])">
                     <div class="relative overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1524813686514-a57563d77965?auto=format&fit=crop&w=800&q=80" class="w-full h-60 object-cover group-hover:scale-110 transition duration-500">
@@ -277,7 +277,7 @@
             </div>
         </div>
 
-        <!-- TAB 2: OWNER & ADVISORY TEAM -->
+        <!-- TAB 2: OWNER & TEAM -->
         <div id="team-tab" class="tab-content hidden py-8">
             <div class="futuristic-card rounded-3xl p-8 md:p-12 grid md:grid-cols-3 gap-8 items-center mb-12">
                 <div class="text-center md:text-left">
@@ -320,7 +320,7 @@
             </div>
         </div>
 
-        <!-- TAB 3: LIVE ROI CALCULATOR -->
+        <!-- TAB 3: CALCULATOR -->
         <div id="calculator-tab" class="tab-content hidden py-8">
             <div class="futuristic-card rounded-3xl p-8 md:p-12 max-w-2xl mx-auto">
                 <span class="gold-text text-xs font-mono uppercase tracking-widest font-bold">Financial Intelligence Engine</span>
@@ -350,7 +350,7 @@
             </div>
         </div>
 
-        <!-- TAB 4: DEEP VIP QUESTIONNAIRE FORM -->
+        <!-- TAB 4: VIP FORM -->
         <div id="form-tab" class="tab-content hidden py-8">
             <div class="futuristic-card rounded-3xl p-8 md:p-12 max-w-3xl mx-auto">
                 <div class="text-center mb-8">
@@ -407,7 +407,7 @@
         </div>
     </section>
 
-    <!-- Complete 19 Services Matrix -->
+    <!-- Services Matrix -->
     <section class="py-16 bg-[#050A07] border-y border-[#D4AF37]/30 px-4">
         <div class="max-w-7xl mx-auto">
             <h2 class="font-syne text-3xl md:text-5xl gold-text text-center mb-2 uppercase font-extrabold">Complete Service Matrix</h2>
@@ -452,7 +452,7 @@
         </a>
     </section>
 
-    <!-- Interactive Property Detail Modal (Pop-up) -->
+    <!-- Modal -->
     <div id="modal" class="fixed inset-0 bg-black/90 backdrop-blur-2xl z-50 hidden flex items-center justify-center p-4">
         <div class="futuristic-card max-w-xl w-full rounded-3xl p-6 md:p-8 relative border border-[#D4AF37] max-h-[90vh] overflow-y-auto">
             <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl font-bold z-10">✕</button>
@@ -467,7 +467,6 @@
             <p id="modalLoc" class="text-xs gold-text mb-3 font-semibold"></p>
             <p id="modalDesc" class="text-gray-300 text-xs leading-relaxed mb-4 font-light"></p>
             
-            <!-- Amenities Tags -->
             <div class="mb-6">
                 <p class="text-[10px] text-gray-400 uppercase font-bold mb-2">Key Amenities & Highlights:</p>
                 <div id="modalTags" class="flex flex-wrap gap-2"></div>
@@ -518,7 +517,6 @@
             document.getElementById('modalPrice').innerText = price;
             document.getElementById('modalImg').src = imgUrl;
 
-            // Render tags
             let tagsContainer = document.getElementById('modalTags');
             tagsContainer.innerHTML = '';
             tags.forEach(tag => {
