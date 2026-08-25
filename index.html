@@ -49,13 +49,6 @@
             font-weight: 800;
             box-shadow: 0 0 25px rgba(212, 175, 55, 0.8);
         }
-
-        /* Cyberpunk Luxury Hero Animation Background */
-        .hero-bg-animated {
-            background: radial-gradient(circle at 50% 30%, rgba(212, 175, 55, 0.15) 0%, rgba(3, 6, 4, 0.95) 70%),
-                        linear-gradient(180deg, rgba(3,6,4,0.4) 0%, #030604 100%),
-                        url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
-        }
     </style>
 </head>
 <body class="bg-[#030604] text-[#F5F5F7] selection:bg-[#D4AF37] selection:text-black">
@@ -77,9 +70,18 @@
         </div>
     </nav>
 
-    <!-- Ultra Luxury Hero Section -->
-    <section class="hero-bg-animated relative h-screen flex items-center justify-center text-center px-4 pt-16 overflow-hidden">
-        <div class="max-w-4xl z-10">
+    <!-- Ultra Luxury Video Hero Section -->
+    <section class="relative h-screen flex items-center justify-center text-center px-4 pt-16 overflow-hidden">
+        <!-- Live Video Element with AutoPlay Fix -->
+        <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover z-0">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-modern-real-estate-buildings-4246-large.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        
+        <!-- Dark Overlay for High Text Readability -->
+        <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-[#030604] z-0"></div>
+
+        <div class="max-w-4xl z-10 relative">
             <div class="inline-block border border-[#D4AF37] backdrop-blur-xl bg-black/60 px-6 py-2 rounded-full mb-5 shadow-[0_0_25px_rgba(212,175,55,0.3)]">
                 <span class="gold-text text-xs uppercase tracking-widest font-bold">🏆 Premier Real Estate Hub | Flats, Buildings & Lands</span>
             </div>
@@ -196,7 +198,7 @@
                 </div>
 
                 <!-- Flat Option 2 -->
-                <div class="futuristic-card rounded-3xl overflow-hidden cursor-pointer group" onclick="openModal('Saya Gold Avenue', 'Ahinsa Khand 1', 'Premium residential towers featuring high-speed elevators, custom ceiling lights, Italian marble flooring, and 24/7 high-tech security.', '₹1.8 Cr - ₹4.2 Cr', 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80', ['Italian Marble', 'High-Speed Elevators', 'Clubhouse Access', 'Covered Parking'])">
+                <div class="futuristic-card rounded-3xl overflow-hidden cursor-pointer group" onclick="openModal('Saya Gold Avenue', 'Vaibhav Khand, Indirapuram', 'Premium residential towers featuring high-speed elevators, custom ceiling lights, Italian marble flooring, and 24/7 high-tech security.', '₹1.8 Cr - ₹4.2 Cr', 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80', ['Italian Marble', 'High-Speed Elevators', 'Clubhouse Access', 'Covered Parking'])">
                     <div class="relative overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80" class="w-full h-60 object-cover group-hover:scale-110 transition duration-500">
                         <span class="absolute top-3 left-3 bg-black/80 backdrop-blur-md text-[#D4AF37] border border-[#D4AF37]/40 text-[10px] px-3 py-1 rounded-full font-bold uppercase">Premium Flat</span>
