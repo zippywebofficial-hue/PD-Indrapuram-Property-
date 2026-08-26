@@ -1,5 +1,3 @@
-import './globals.css';
-
 export const metadata = {
   title: 'PD Indrapuram Property',
   description: 'Luxury Real Estate Portal',
