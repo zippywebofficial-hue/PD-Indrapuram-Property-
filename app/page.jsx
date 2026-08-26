@@ -143,6 +143,14 @@ export default function Page() {
 
   return (
     <div className="bg-[#030604] min-h-screen text-white font-sans selection:bg-[#D4AF37] selection:text-black">
+      {/* Import Custom Calligraphy / Script Font for Headlines */}
+      <style jsx global>{`
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+        .script-headline {
+          font-family: 'Great Vibes', cursive !important;
+        }
+      `}</style>
+
       {/* Top Bar Navigation */}
       <nav className="fixed top-0 left-0 w-full z-50 backdrop-blur-2xl bg-[#030604]/90 border-b border-[#D4AF37]/30 px-4 md:px-8 py-3.5 flex justify-between items-center">
         <div className="flex items-center gap-3 cursor-pointer" onClick={() => switchTab('properties-tab')}>
@@ -225,7 +233,7 @@ export default function Page() {
         /* MAIN LANDING VIEW */
         <>
           {/* Dubai-Style Hero Section with Background Video */}
-          <section className="relative min-h-[90vh] flex items-center justify-center text-center px-4 pt-20 pb-10 overflow-hidden">
+          <section className="relative min-h-[75vh] flex items-center justify-center text-center px-4 pt-24 pb-12 overflow-hidden">
             <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover z-0 opacity-55">
               <source src="https://assets.mixkit.co/videos/preview/mixkit-modern-real-estate-buildings-4246-large.mp4" type="video/mp4" />
             </video>
@@ -235,8 +243,16 @@ export default function Page() {
               <div className="inline-block border border-[#D4AF37] backdrop-blur-xl bg-black/60 px-5 py-1.5 rounded-full mb-4 shadow-[0_0_20px_rgba(212,175,55,0.3)]">
                 <span className="gold-text text-[11px] uppercase tracking-widest font-bold">🏆 Premier Real Estate Enterprise • Ghaziabad</span>
               </div>
-              <h1 className="font-syne text-3xl md:text-6xl font-extrabold text-white tracking-wide leading-tight mb-3"> PD INDIRAPURAM <br /> <span className="italic font-normal gold-text"> Kingdom of Elite Estates </span> </h1>
-              <p className="text-gray-300 text-xs md:text-sm max-w-2xl mx-auto mb-6 font-light"> Buy, Sell, Lease & Invest in Luxury Flats, Sky Duplexes, Penthouses, Commercial Retail Plazas & Agricultural Lands. </p>
+              
+              {/* STYLISH SCRIPT FONTS APPLIED TO HEADLINE */}
+              <h1 className="font-syne text-4xl md:text-7xl font-extrabold text-white tracking-wide leading-tight mb-3"> 
+                PD INDIRAPURAM <br /> 
+                <span className="script-headline gold-text text-4xl md:text-6xl font-normal block mt-2 capitalize"> 
+                  Kingdom of Elite Estates 
+                </span> 
+              </h1>
+              
+              <p className="text-gray-300 text-xs md:text-sm max-w-2xl mx-auto mb-8 font-light"> Buy, Sell, Lease & Invest in Luxury Flats, Sky Duplexes, Penthouses, Commercial Retail Plazas & Agricultural Lands. </p>
 
               {/* Search Filter Box */}
               <div className="futuristic-card rounded-2xl p-3 md:p-4 max-w-3xl mx-auto border border-[#D4AF37]/50 shadow-[0_0_25px_rgba(212,175,55,0.2)]">
@@ -263,31 +279,33 @@ export default function Page() {
                   </div>
                 </div>
               </div>
+            </div>
+          </section>
 
-              {/* Trust Bar Badges */}
-              <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
-                <div className="bg-black/60 backdrop-blur-md p-3 rounded-2xl border border-[#D4AF37]/30">
-                  <h4 className="font-syne text-xl gold-text font-extrabold">500+</h4>
-                  <p className="text-[10px] text-gray-300 font-medium">Happy Families Housed</p>
-                </div>
-                <div className="bg-black/60 backdrop-blur-md p-3 rounded-2xl border border-[#D4AF37]/30">
-                  <h4 className="font-syne text-xl gold-text font-extrabold">4.7 ★</h4>
-                  <p className="text-[10px] text-gray-300 font-medium">129+ Google Reviews</p>
-                </div>
-                <div className="bg-black/60 backdrop-blur-md p-3 rounded-2xl border border-[#D4AF37]/30">
-                  <h4 className="font-syne text-xl gold-text font-extrabold">₹250Cr+</h4>
-                  <p className="text-[10px] text-gray-300 font-medium">Transacted Assets</p>
-                </div>
-                <div className="bg-black/60 backdrop-blur-md p-3 rounded-2xl border border-[#D4AF37]/30">
-                  <h4 className="font-syne text-xl gold-text font-extrabold">24 Hours</h4>
-                  <p className="text-[10px] text-gray-300 font-medium">Open Desk Assistance</p>
-                </div>
+          {/* MOVED STATS BADGES OUTSIDE & BELOW THE HERO SECTION */}
+          <section className="relative -mt-6 z-20 px-4 max-w-5xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="bg-black/90 backdrop-blur-xl p-4 rounded-2xl border border-[#D4AF37]/40 text-center shadow-[0_10px_25px_rgba(0,0,0,0.8)]">
+                <h4 className="font-syne text-2xl gold-text font-extrabold">500+</h4>
+                <p className="text-[11px] text-gray-300 font-medium mt-1">Happy Families Housed</p>
+              </div>
+              <div className="bg-black/90 backdrop-blur-xl p-4 rounded-2xl border border-[#D4AF37]/40 text-center shadow-[0_10px_25px_rgba(0,0,0,0.8)]">
+                <h4 className="font-syne text-2xl gold-text font-extrabold">4.7 ★</h4>
+                <p className="text-[11px] text-gray-300 font-medium mt-1">129+ Google Reviews</p>
+              </div>
+              <div className="bg-black/90 backdrop-blur-xl p-4 rounded-2xl border border-[#D4AF37]/40 text-center shadow-[0_10px_25px_rgba(0,0,0,0.8)]">
+                <h4 className="font-syne text-2xl gold-text font-extrabold">₹250Cr+</h4>
+                <p className="text-[11px] text-gray-300 font-medium mt-1">Transacted Assets</p>
+              </div>
+              <div className="bg-black/90 backdrop-blur-xl p-4 rounded-2xl border border-[#D4AF37]/40 text-center shadow-[0_10px_25px_rgba(0,0,0,0.8)]">
+                <h4 className="font-syne text-2xl gold-text font-extrabold">24 Hours</h4>
+                <p className="text-[11px] text-gray-300 font-medium mt-1">Open Desk Assistance</p>
               </div>
             </div>
           </section>
 
           {/* Navigation Tabs */}
-          <section className="py-6 px-4 max-w-7xl mx-auto">
+          <section className="py-10 px-4 max-w-7xl mx-auto">
             <div className="flex overflow-x-auto gap-2 pb-3 justify-start md:justify-center border-b border-[#D4AF37]/20">
               <button onClick={() => switchTab('properties-tab')} className={`tab-btn ${activeTab === 'properties-tab' ? 'active' : 'text-gray-300'} border border-[#D4AF37]/40 px-5 py-2.5 rounded-2xl text-xs uppercase font-extrabold whitespace-nowrap transition`}>🏢 Featured Properties</button>
               <button onClick={() => switchTab('services-tab')} className={`tab-btn ${activeTab === 'services-tab' ? 'active' : 'text-gray-300'} border border-[#D4AF37]/40 px-5 py-2.5 rounded-2xl text-xs uppercase font-extrabold whitespace-nowrap transition`}>⚡ Comprehensive Services</button>
