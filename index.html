@@ -1,541 +1,484 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PD INDIRAPURAM | Next-Gen Luxury Real Estate Portal</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Outfit', sans-serif; background-color: #030604; color: #F5F5F7; }
-        .font-syne { font-family: 'Syne', sans-serif; }
+import React, { useState } from 'react';
+import { 
+  Building2, 
+  MapPin, 
+  Phone, 
+  Mail, 
+  Instagram, 
+  Linkedin, 
+  Facebook, 
+  Twitter, 
+  MessageSquare, 
+  Search, 
+  SlidersHorizontal, 
+  ShieldCheck, 
+  Award, 
+  Headphones, 
+  ChevronRight, 
+  Menu, 
+  X,
+  Play,
+  Send
+} from 'lucide-react';
+
+export default function ZippyRealEstatePortal() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [filterType, setFilterType] = useState('all');
+  const [filterLocation, setFilterLocation] = useState('all');
+  const [filterBudget, setFilterBudget] = useState('all');
+
+  // Contact Form Dynamic State (Fix 2)
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    propertyType: 'Flats / Apartments',
+    budget: '₹1 Cr - ₹5 Cr'
+  });
+
+  // Sample Property Data (Updated with dynamic map queries - Fix 1)
+  const properties = [
+    {
+      id: 1,
+      title: "Skyline Luxury Penthouse",
+      type: "flats",
+      location: "Mumbai",
+      budget: "high",
+      price: "₹12.5 Cr",
+      image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=800",
+      specs: "4 BHK | 4,500 Sq.Ft | Sea View",
+      mapQuery: "Skyline+Luxury+Penthouse+Mumbai"
+    },
+    {
+      id: 2,
+      title: "Greenfield Prime Commercial Plot",
+      type: "land",
+      location: "Delhi NCR",
+      budget: "medium",
+      price: "₹4.8 Cr",
+      image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=800",
+      specs: "2 Acres | Clear Title | Highway Frontage",
+      mapQuery: "Indirapuram+Ghaziabad+Delhi+NCR"
+    },
+    {
+      id: 3,
+      title: "Corporate Tech Park Tower",
+      type: "commercial",
+      location: "Bangalore",
+      budget: "high",
+      price: "₹25.0 Cr",
+      image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800",
+      specs: "15,000 Sq.Ft | Fully Furnished | High ROI",
+      mapQuery: "Tech+Park+Bangalore"
+    }
+  ];
+
+  // Dynamic Google Maps Click Handler (Fix 1)
+  const openGoogleMaps = (query) => {
+    const encodedQuery = encodeURIComponent(query);
+    const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodedQuery}`;
+    window.open(mapsUrl, '_blank', 'noopener,noreferrer');
+  };
+
+  // Dynamic WhatsApp Form Submission Handler (Fix 2 & 3)
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    const phoneNumber = "919999999999"; // Apni agency ka WhatsApp number yahan badlein
+    const textMessage = `Hello Zippy Real Estate!%0A%0A*New Property Enquiry*%0A*Name:* ${encodeURIComponent(formData.name)}%0A*Phone:* ${encodeURIComponent(formData.phone)}%0A*Looking For:* ${encodeURIComponent(formData.propertyType)}%0A*Budget:* ${encodeURIComponent(formData.budget)}`;
+    
+    window.open(`https://wa.me/${phoneNumber}?text=${textMessage}`, '_blank');
+  };
+
+  return (
+    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-amber-500 selection:text-black">
+      
+      {/* ----------------- DYNAMIC SOCIAL META TAGS (Fix 4) ----------------- */}
+      <head>
+        <title>Zippy Real Estate | Luxury & Commercial Property Portal</title>
+        <meta name="description" content="Discover exclusive commercial hubs, plots, and luxury flats verified for elite investors." />
         
-        .gold-gradient { 
-            background: linear-gradient(135deg, #FFE885 0%, #D4AF37 40%, #AA7C11 80%, #F5D061 100%); 
-        }
-        .gold-text { 
-            background: linear-gradient(135deg, #FFE885 0%, #D4AF37 50%, #F5D061 100%); 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; 
-        }
+        {/* OpenGraph / WhatsApp preview tags */}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Zippy Real Estate | Exclusive Luxury Assets" />
+        <meta property="og:description" content="₹500Cr+ Portfolio Delivered. Explore verified land and luxury commercial spaces." />
+        <meta property="og:image" content="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200" />
+        
+        {/* Twitter preview tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Zippy Real Estate | Exclusive Luxury Assets" />
+        <meta name="twitter:description" content="₹500Cr+ Portfolio Delivered. Explore verified land and commercial spaces." />
+        <meta name="twitter:image" content="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200" />
+      </head>
 
-        .futuristic-card {
-            background: rgba(10, 20, 15, 0.75);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border: 1px solid rgba(212, 175, 55, 0.25);
-            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.8), inset 0 1px 1px rgba(255, 232, 133, 0.2);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
+      {/* ----------------- NAVBAR SECTION ----------------- */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800/80">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+          <div className="flex items-center gap-3 cursor-pointer">
+            <div className="h-10 w-10 rounded-xl bg-gradient-to-tr from-amber-500 to-amber-300 flex items-center justify-center shadow-lg shadow-amber-500/20">
+              <Building2 className="w-6 h-6 text-slate-950 font-bold" />
+            </div>
+            <div>
+              <span className="text-xl font-black tracking-wider uppercase bg-gradient-to-r from-white via-slate-200 to-amber-400 bg-clip-text text-transparent">
+                Zippy Real Estate
+              </span>
+              <span className="block text-[10px] tracking-widest text-amber-500/90 font-semibold uppercase">Luxury & Commercial</span>
+            </div>
+          </div>
 
-        .btn-futuristic-3d {
-            position: relative;
-            background: linear-gradient(180deg, rgba(255,232,133,0.15) 0%, rgba(212,175,55,0.05) 100%);
-            border: 1.5px solid #D4AF37;
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.25), inset 0 2px 4px rgba(255,255,255,0.3);
-            backdrop-filter: blur(15px);
-            transition: all 0.3s ease;
-        }
-        .btn-futuristic-3d:hover {
-            transform: translateY(-4px) scale(1.03);
-            border-color: #FFE885;
-            box-shadow: 0 12px 35px rgba(212, 175, 55, 0.6), inset 0 2px 8px rgba(255,255,255,0.6);
-            background: linear-gradient(180deg, rgba(255,232,133,0.3) 0%, rgba(212,175,55,0.2) 100%);
-        }
+          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+            <a href="#properties" className="hover:text-amber-400 transition-colors">Properties</a>
+            <a href="#about" className="hover:text-amber-400 transition-colors">About Us</a>
+            <a href="#stats" className="hover:text-amber-400 transition-colors">Portfolio</a>
+            <a href="#contact-form" className="hover:text-amber-400 transition-colors">Contact</a>
+          </div>
 
-        .tab-btn.active {
-            background: linear-gradient(135deg, #FFE885 0%, #D4AF37 100%);
-            color: #000;
-            font-weight: 800;
-            box-shadow: 0 0 25px rgba(212, 175, 55, 0.8);
-        }
-    </style>
-</head>
-<body class="bg-[#030604] text-[#F5F5F7] selection:bg-[#D4AF37] selection:text-black">
-
-    <!-- Cyber-Royal Navigation Bar -->
-    <nav class="fixed top-0 left-0 w-full z-50 backdrop-blur-2xl bg-[#030604]/80 border-b border-[#D4AF37]/30 px-4 py-3.5 flex justify-between items-center">
-        <div class="flex items-center gap-2">
-            <div class="w-3.5 h-3.5 rounded-full bg-[#D4AF37] animate-ping shadow-[0_0_20px_#D4AF37]"></div>
-            <span class="font-syne text-xl md:text-2xl tracking-widest gold-text font-extrabold">PD INDIRAPURAM</span>
-        </div>
-        <div class="flex gap-2.5">
-            <a href="https://wa.me/919990345444?text=Greetings%20PD%20INDIRAPURAM,%20I%20am%20interested%20in%20buying/selling%20properties." target="_blank" class="bg-[#25D366] text-white px-4 py-2 rounded-xl font-extrabold text-[11px] tracking-wider uppercase flex items-center gap-2 shadow-[0_0_15px_rgba(37,211,102,0.4)] hover:scale-105 transition">
-                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
-                WhatsApp VIP
+          <div className="hidden md:flex items-center gap-4">
+            <a href="#contact-form" className="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold text-sm transition-all shadow-lg shadow-amber-500/20 active:scale-95 inline-block">
+              Book Consultation
             </a>
-            <a href="tel:9990345444" class="gold-gradient text-black px-4 py-2 rounded-xl font-extrabold text-[11px] tracking-wider uppercase shadow-[0_0_20px_rgba(212,175,55,0.5)] hover:scale-105 transition">
-                👑 Direct Desk
-            </a>
-        </div>
-    </nav>
+          </div>
 
-    <!-- Ultra Luxury Video Hero Section -->
-    <section class="relative h-screen flex items-center justify-center text-center px-4 pt-16 overflow-hidden">
-        <!-- Live Video Element with AutoPlay Fix -->
-        <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover z-0">
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-modern-real-estate-buildings-4246-large.mp4" type="video/mp4">
+          <button 
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden p-2 text-slate-300 hover:text-white"
+          >
+            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
+
+        {/* Mobile Menu Drawer */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden bg-slate-900 border-b border-slate-800 px-4 pt-2 pb-6 space-y-3">
+            <a href="#properties" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-slate-300 hover:text-amber-400">Properties</a>
+            <a href="#about" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-slate-300 hover:text-amber-400">About Us</a>
+            <a href="#stats" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-slate-300 hover:text-amber-400">Portfolio</a>
+            <a href="#contact-form" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-slate-300 hover:text-amber-400">Contact</a>
+            <a href="#contact-form" onClick={() => setIsMobileMenuOpen(false)} className="block w-full text-center mt-2 px-5 py-2.5 rounded-xl bg-amber-500 text-slate-950 font-semibold text-sm">
+              Book Consultation
+            </a>
+          </div>
+        )}
+      </nav>
+
+      {/* ----------------- HERO SECTION WITH VIDEO BACKGROUND ----------------- */}
+      <section className="relative min-h-screen pt-28 pb-16 flex flex-col justify-center items-center overflow-hidden">
+        
+        {/* Background Video Layer */}
+        <div className="absolute inset-0 z-0">
+          <video 
+            autoPlay 
+            loop 
+            muted 
+            playsInline 
+            className="w-full h-full object-cover opacity-30"
+            src="https://assets.mixkit.co/videos/preview/mixkit-modern-city-skyscrapers-and-buildings-41553-large.mp4"
+          >
             Your browser does not support the video tag.
-        </video>
-        
-        <!-- Dark Overlay for High Text Readability -->
-        <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-[#030604] z-0"></div>
+          </video>
+          {/* Overlay Gradients for Readability */}
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-950/40" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-amber-500/10 via-transparent to-transparent" />
+        </div>
 
-        <div class="max-w-4xl z-10 relative">
-            <div class="inline-block border border-[#D4AF37] backdrop-blur-xl bg-black/60 px-6 py-2 rounded-full mb-5 shadow-[0_0_25px_rgba(212,175,55,0.3)]">
-                <span class="gold-text text-xs uppercase tracking-widest font-bold">🏆 Premier Real Estate Hub | Flats, Buildings & Lands</span>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-semibold uppercase tracking-wider backdrop-blur-md">
+            <Play className="w-3.5 h-3.5 fill-amber-400" /> Premium Real Estate Solutions
+          </div>
+          
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tight max-w-4xl mx-auto leading-tight">
+            Discover Exclusive <span className="bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 bg-clip-text text-transparent">Land, Flats & Commercial</span> Assets
+          </h1>
+          
+          <p className="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto font-normal">
+            Direct verified deal flows, prime commercial locations, and ultra-luxury residential assets tailored for elite investors.
+          </p>
+
+          {/* ----------------- FLOATING SEARCH / FILTER BAR ----------------- */}
+          <div className="w-full max-w-4xl mx-auto mt-8 p-3 sm:p-4 rounded-2xl bg-slate-900/80 border border-slate-700/60 backdrop-blur-xl shadow-2xl shadow-amber-500/5">
+            <div className="grid grid-cols-1 sm:grid-cols-4 gap-3">
+              
+              {/* Filter 1: Type */}
+              <div className="flex flex-col text-left px-3 py-2 rounded-xl bg-slate-800/50 border border-slate-700/40">
+                <label className="text-[10px] font-bold text-amber-400 uppercase tracking-wider">Category</label>
+                <select 
+                  value={filterType} 
+                  onChange={(e) => setFilterType(e.target.value)}
+                  className="bg-transparent text-slate-200 text-sm font-medium focus:outline-none cursor-pointer mt-1"
+                >
+                  <option value="all" className="bg-slate-900">All Categories</option>
+                  <option value="flats" className="bg-slate-900">Flats / Apartments</option>
+                  <option value="land" className="bg-slate-900">Plots & Land</option>
+                  <option value="commercial" className="bg-slate-900">Commercial Spaces</option>
+                </select>
+              </div>
+
+              {/* Filter 2: Location */}
+              <div className="flex flex-col text-left px-3 py-2 rounded-xl bg-slate-800/50 border border-slate-700/40">
+                <label className="text-[10px] font-bold text-amber-400 uppercase tracking-wider">Location</label>
+                <select 
+                  value={filterLocation} 
+                  onChange={(e) => setFilterLocation(e.target.value)}
+                  className="bg-transparent text-slate-200 text-sm font-medium focus:outline-none cursor-pointer mt-1"
+                >
+                  <option value="all" className="bg-slate-900">All Locations</option>
+                  <option value="Mumbai" className="bg-slate-900">Mumbai</option>
+                  <option value="Delhi NCR" className="bg-slate-900">Delhi NCR</option>
+                  <option value="Bangalore" className="bg-slate-900">Bangalore</option>
+                </select>
+              </div>
+
+              {/* Filter 3: Budget */}
+              <div className="flex flex-col text-left px-3 py-2 rounded-xl bg-slate-800/50 border border-slate-700/40">
+                <label className="text-[10px] font-bold text-amber-400 uppercase tracking-wider">Budget Range</label>
+                <select 
+                  value={filterBudget} 
+                  onChange={(e) => setFilterBudget(e.target.value)}
+                  className="bg-transparent text-slate-200 text-sm font-medium focus:outline-none cursor-pointer mt-1"
+                >
+                  <option value="all" className="bg-slate-900">Any Budget</option>
+                  <option value="medium" className="bg-slate-900">₹1 Cr - ₹5 Cr</option>
+                  <option value="high" className="bg-slate-900">₹5 Cr+</option>
+                </select>
+              </div>
+
+              {/* Search Button */}
+              <button className="h-full py-3 sm:py-0 rounded-xl bg-gradient-to-r from-amber-500 to-amber-400 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-amber-500/20 transition-all active:scale-95">
+                <Search className="w-4 h-4 stroke-[3]" /> Search Now
+              </button>
+
             </div>
-            <h1 class="font-syne text-4xl md:text-7xl font-extrabold text-white tracking-wide leading-tight mb-4">
-                PD INDIRAPURAM <br>
-                <span class="italic font-normal gold-text">
-                    Kingdom of Elite Estates
-                </span>
-            </h1>
-            <p class="text-gray-300 text-xs md:text-sm max-w-2xl mx-auto mb-8 font-light leading-relaxed">
-                Ghaziabad, UP | Buy, Sell & Rent Luxury Apartments, Penthouses, Commercial Buildings & Prime Agricultural Lands (Khet/Plots).
+          </div>
+
+          {/* ----------------- TRUST BADGES & VIP STATS ----------------- */}
+          <div id="stats" className="w-full max-w-5xl mx-auto pt-12">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              
+              <div className="p-6 rounded-2xl bg-slate-900/40 border border-slate-800/80 backdrop-blur-md flex items-center gap-4 hover:border-amber-500/30 transition-all">
+                <div className="p-3.5 rounded-xl bg-amber-500/10 text-amber-400">
+                  <Award className="w-7 h-7" />
+                </div>
+                <div className="text-left">
+                  <div className="text-2xl sm:text-3xl font-black text-white">₹500Cr+</div>
+                  <div className="text-xs text-slate-400 font-medium uppercase tracking-wider mt-0.5">Portfolio Delivered</div>
+                </div>
+              </div>
+
+              <div className="p-6 rounded-2xl bg-slate-900/40 border border-slate-800/80 backdrop-blur-md flex items-center gap-4 hover:border-amber-500/30 transition-all">
+                <div className="p-3.5 rounded-xl bg-amber-500/10 text-amber-400">
+                  <ShieldCheck className="w-7 h-7" />
+                </div>
+                <div className="text-left">
+                  <div className="text-2xl sm:text-3xl font-black text-white">100%</div>
+                  <div className="text-xs text-slate-400 font-medium uppercase tracking-wider mt-0.5">Verified Legal Land</div>
+                </div>
+              </div>
+
+              <div className="p-6 rounded-2xl bg-slate-900/40 border border-slate-800/80 backdrop-blur-md flex items-center gap-4 hover:border-amber-500/30 transition-all">
+                <div className="p-3.5 rounded-xl bg-amber-500/10 text-amber-400">
+                  <Headphones className="w-7 h-7" />
+                </div>
+                <div className="text-left">
+                  <div className="text-2xl sm:text-3xl font-black text-white">24/7 VIP</div>
+                  <div className="text-xs text-slate-400 font-medium uppercase tracking-wider mt-0.5">Concierge Support</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ----------------- PROPERTY LISTINGS SECTION ----------------- */}
+      <section id="properties" className="py-20 bg-slate-950 border-t border-slate-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
+            <div>
+              <span className="text-amber-500 text-xs font-bold uppercase tracking-widest">Featured Inventory</span>
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mt-2">Prime Real Estate Assets</h2>
+            </div>
+            <p className="text-slate-400 text-sm max-w-md mt-2 md:mt-0">
+              Handpicked properties verified for clean documentation, highest ROI, and prime locations.
             </p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <button onclick="switchTab('properties-tab')" class="btn-futuristic-3d text-white px-8 py-4 rounded-2xl font-extrabold text-xs tracking-widest uppercase flex items-center gap-2">
-                    🏢 Explore Estates
-                </button>
-                <button onclick="switchTab('calculator-tab')" class="btn-futuristic-3d text-[#D4AF37] px-8 py-4 rounded-2xl font-extrabold text-xs tracking-widest uppercase flex items-center gap-2">
-                    📊 ROI Calculator
-                </button>
-            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {properties.map((property) => (
+              <div key={property.id} className="group rounded-2xl bg-slate-900 border border-slate-800 overflow-hidden hover:border-amber-500/40 transition-all duration-300">
+                <div className="relative h-64 overflow-hidden">
+                  <img 
+                    src={property.image} 
+                    alt={property.title} 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-slate-950/80 backdrop-blur-md text-amber-400 text-xs font-semibold uppercase">
+                    {property.type}
+                  </div>
+                  <div className="absolute bottom-4 right-4 px-3 py-1 rounded-lg bg-amber-500 text-slate-950 font-black text-sm">
+                    {property.price}
+                  </div>
+                </div>
+
+                <div className="p-6 space-y-4">
+                  <h3 className="text-xl font-bold text-white group-hover:text-amber-400 transition-colors">
+                    {property.title}
+                  </h3>
+                  
+                  {/* CLEAN MAP LOCATION BUTTON FIXED (Fix 1) */}
+                  <button 
+                    onClick={() => openGoogleMaps(property.mapQuery)} 
+                    className="flex items-center gap-2 text-slate-400 hover:text-amber-400 text-sm font-medium transition-colors cursor-pointer"
+                  >
+                    <MapPin className="w-4 h-4 text-amber-500" />
+                    <span>{property.location}</span>
+                    <span className="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-amber-400 border border-slate-700 ml-1">View Map</span>
+                  </button>
+
+                  <div className="text-xs text-slate-500 pt-2 border-t border-slate-800">
+                    {property.specs}
+                  </div>
+                  <a 
+                    href="#contact-form" 
+                    className="w-full py-3 rounded-xl bg-slate-800 hover:bg-amber-500 hover:text-slate-950 text-slate-200 font-semibold text-sm transition-all flex items-center justify-center gap-2"
+                  >
+                    Enquire Now <ChevronRight className="w-4 h-4" />
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-    </section>
+      </section>
 
-    <!-- THE ROYAL SOCIAL CIRCLE -->
-    <section class="py-14 bg-[#050A07] border-y border-[#D4AF37]/30 px-4">
-        <div class="max-w-6xl mx-auto text-center">
-            <span class="gold-text text-xs font-mono uppercase tracking-widest font-bold">Digital Presence & Direct Access</span>
-            <h2 class="font-syne text-3xl md:text-5xl text-white mt-1 mb-2 uppercase tracking-wider font-extrabold">The Royal Social Circle</h2>
-            <p class="text-gray-400 text-xs max-w-lg mx-auto mb-10">Connect instantly through our interactive channels & Google Maps desk.</p>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Instagram Button -->
-                <a href="https://ig.me/m/pd_indirapuram_property_dealer" target="_blank" class="btn-futuristic-3d p-5 rounded-2xl flex items-center justify-between group">
-                    <div class="flex items-center gap-4">
-                        <div class="p-3 rounded-xl bg-gradient-to-tr from-yellow-500 via-pink-500 to-purple-600 shadow-lg">
-                            <svg class="w-6 h-6 fill-white" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                        </div>
-                        <div class="text-left">
-                            <p class="text-white text-sm font-extrabold tracking-wide">Instagram VIP</p>
-                            <p class="text-gray-400 text-[11px]">@pd_indirapuram...</p>
-                        </div>
-                    </div>
-                    <span class="gold-text text-lg group-hover:translate-x-2 transition">➔</span>
-                </a>
+      {/* ----------------- DYNAMIC CONTACT FORM SECTION (Fix 2 & 3) ----------------- */}
+      <section id="contact-form" className="py-20 bg-slate-900/50 border-t border-slate-900">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
+          <div className="p-8 sm:p-10 rounded-3xl bg-slate-900 border border-slate-800 backdrop-blur-xl shadow-2xl">
+            <h3 className="text-2xl sm:text-3xl font-bold text-white text-center">Request VIP Callback</h3>
+            <p className="text-slate-400 text-sm text-center mt-2 mb-8">
+              Fill in your requirement to instantly message our senior investment advisor via WhatsApp.
+            </p>
 
-                <!-- WhatsApp Button -->
-                <a href="https://wa.me/919990345444?text=Greetings%20PD%20INDIRAPURAM,%20I%20want%20to%20book%20a%20Private%20Property%20Tour." target="_blank" class="btn-futuristic-3d p-5 rounded-2xl flex items-center justify-between group border-[#25D366]/60">
-                    <div class="flex items-center gap-4">
-                        <div class="p-3 rounded-xl bg-[#25D366] text-white shadow-lg shadow-[#25D366]/30">
-                            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
-                        </div>
-                        <div class="text-left">
-                            <p class="text-white text-sm font-extrabold tracking-wide">WhatsApp Direct</p>
-                            <p class="text-gray-300 text-[11px]">Instant Auto Concierge</p>
-                        </div>
-                    </div>
-                    <span class="text-[#25D366] text-lg group-hover:translate-x-2 transition">➔</span>
-                </a>
+            <form onSubmit={handleFormSubmit} className="space-y-4">
+              <div>
+                <label className="block text-xs font-bold text-amber-400 uppercase tracking-wider mb-2">Full Name</label>
+                <input 
+                  type="text" 
+                  required
+                  placeholder="Rahul Sharma"
+                  value={formData.name}
+                  onChange={(e) => setFormData({...formData, name: e.target.value})}
+                  className="w-full px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-slate-100 placeholder-slate-500 text-sm focus:outline-none focus:border-amber-500 transition-colors"
+                />
+              </div>
 
-                <!-- Google Maps Button -->
-                <a href="https://maps.app.goo.gl/PDINDIRAPURAM" target="_blank" onclick="window.open('https://www.google.com/maps/search/PD+INDIRAPURAM+property+dealer+Shakti+Khand+2+Indirapuram', '_blank'); return false;" class="btn-futuristic-3d p-5 rounded-2xl flex items-center justify-between group border-blue-500/60">
-                    <div class="flex items-center gap-4">
-                        <div class="p-3 rounded-xl bg-gradient-to-tr from-blue-600 to-cyan-400 text-white shadow-lg shadow-blue-500/30">
-                            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                        </div>
-                        <div class="text-left">
-                            <p class="text-white text-sm font-extrabold tracking-wide">Google Maps GPS</p>
-                            <p class="text-gray-300 text-[11px]">PD INDIRAPURAM Dealer</p>
-                        </div>
-                    </div>
-                    <span class="text-cyan-400 text-lg group-hover:translate-x-2 transition">➔</span>
-                </a>
-            </div>
-        </div>
-    </section>
+              <div>
+                <label className="block text-xs font-bold text-amber-400 uppercase tracking-wider mb-2">Phone Number</label>
+                <input 
+                  type="tel" 
+                  required
+                  placeholder="+91 9876543210"
+                  value={formData.phone}
+                  onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                  className="w-full px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-slate-100 placeholder-slate-500 text-sm focus:outline-none focus:border-amber-500 transition-colors"
+                />
+              </div>
 
-    <!-- Multi-Tab System -->
-    <section class="py-12 px-4 max-w-7xl mx-auto">
-        <div class="flex overflow-x-auto gap-3 pb-4 justify-start md:justify-center border-b border-[#D4AF37]/20">
-            <button id="btn-properties-tab" onclick="switchTab('properties-tab')" class="tab-btn active border border-[#D4AF37]/40 px-6 py-3 rounded-2xl text-xs uppercase tracking-wider font-extrabold whitespace-nowrap transition">
-                🏢 Expanded Property Portfolio
-            </button>
-            <button id="btn-team-tab" onclick="switchTab('team-tab')" class="tab-btn border border-[#D4AF37]/40 px-6 py-3 rounded-2xl text-xs uppercase tracking-wider font-extrabold whitespace-nowrap transition text-gray-300">
-                👑 Founder & Advisory Team
-            </button>
-            <button id="btn-calculator-tab" onclick="switchTab('calculator-tab')" class="tab-btn border border-[#D4AF37]/40 px-6 py-3 rounded-2xl text-xs uppercase tracking-wider font-extrabold whitespace-nowrap transition text-gray-300">
-                📈 Yield & ROI Calculator
-            </button>
-            <button id="btn-form-tab" onclick="switchTab('form-tab')" class="tab-btn border border-[#D4AF37]/40 px-6 py-3 rounded-2xl text-xs uppercase tracking-wider font-extrabold whitespace-nowrap transition text-gray-300">
-                📋 VIP Buyer/Seller Application
-            </button>
-        </div>
-
-        <!-- TAB 1: PROPERTY PORTFOLIO -->
-        <div id="properties-tab" class="tab-content py-8">
-            <h2 class="font-syne text-3xl md:text-5xl gold-text text-center mb-2 uppercase font-extrabold">Complete Property Catalogue</h2>
-            <p class="text-center text-gray-400 text-xs mb-10">Flats, Luxury Penthouses, Commercial Buildings, Agricultural Lands & Khet (Buy, Sell & Rent)</p>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Flat Option 1 -->
-                <div class="futuristic-card rounded-3xl overflow-hidden cursor-pointer group" onclick="openModal('Apex D\'Rio Luxury Duplex', 'Indirapuram, Ghaziabad', 'Private glass balconies, duplex penthouses, floating spiral staircases, double-height ceilings, and infinity pools.', '₹2.5 Cr - ₹6.5 Cr', 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80', ['Infinity Pool', 'Duplex Sky Villa', 'Private Elevator', '24/7 High-Tech Security'])">
-                    <div class="relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80" class="w-full h-60 object-cover group-hover:scale-110 transition duration-500">
-                        <span class="absolute top-3 left-3 bg-black/80 backdrop-blur-md text-[#D4AF37] border border-[#D4AF37]/40 text-[10px] px-3 py-1 rounded-full font-bold uppercase">Luxury Residential Flat</span>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-syne text-2xl text-white font-bold">Apex D'Rio</h3>
-                        <p class="text-gray-400 text-xs mt-2">Duplex Penthouses & Sky Villas for Sale & Rent.</p>
-                        <div class="mt-5 flex justify-between items-center border-t border-white/10 pt-4">
-                            <span class="gold-text font-extrabold text-sm">₹2.5 Cr onwards</span>
-                            <span class="btn-futuristic-3d text-[#D4AF37] text-[10px] px-4 py-1.5 rounded-full font-bold">View Specs ➔</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Flat Option 2 -->
-                <div class="futuristic-card rounded-3xl overflow-hidden cursor-pointer group" onclick="openModal('Saya Gold Avenue', 'Vaibhav Khand, Indirapuram', 'Premium residential towers featuring high-speed elevators, custom ceiling lights, Italian marble flooring, and 24/7 high-tech security.', '₹1.8 Cr - ₹4.2 Cr', 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80', ['Italian Marble', 'High-Speed Elevators', 'Clubhouse Access', 'Covered Parking'])">
-                    <div class="relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80" class="w-full h-60 object-cover group-hover:scale-110 transition duration-500">
-                        <span class="absolute top-3 left-3 bg-black/80 backdrop-blur-md text-[#D4AF37] border border-[#D4AF37]/40 text-[10px] px-3 py-1 rounded-full font-bold uppercase">Premium Flat</span>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-syne text-2xl text-white font-bold">Saya Gold Avenue</h3>
-                        <p class="text-gray-400 text-xs mt-2">2BHK, 3BHK & 4BHK Apartments Available.</p>
-                        <div class="mt-5 flex justify-between items-center border-t border-white/10 pt-4">
-                            <span class="gold-text font-extrabold text-sm">₹1.8 Cr onwards</span>
-                            <span class="btn-futuristic-3d text-[#D4AF37] text-[10px] px-4 py-1.5 rounded-full font-bold">View Specs ➔</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Commercial Building Option -->
-                <div class="futuristic-card rounded-3xl overflow-hidden cursor-pointer group" onclick="openModal('Commercial Retail Plaza', 'Shakti Khand / Ahinsa Khand', 'Multi-floor commercial building, prime road facing, ideal for corporate headquarters, showrooms, or high-yield rental returns.', '₹8.5 Cr - ₹25.0 Cr', 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80', ['Main Road Facing', 'High Rental Yield', 'Multi-Level Parking', '100% Power Backup'])">
-                    <div class="relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80" class="w-full h-60 object-cover group-hover:scale-110 transition duration-500">
-                        <span class="absolute top-3 left-3 bg-black/80 backdrop-blur-md text-[#D4AF37] border border-[#D4AF37]/40 text-[10px] px-3 py-1 rounded-full font-bold uppercase">Commercial Building</span>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-syne text-2xl text-white font-bold">Independent Commercial Plaza</h3>
-                        <p class="text-gray-400 text-xs mt-2">Full Building Buy/Sell & High Rental Yield Investment.</p>
-                        <div class="mt-5 flex justify-between items-center border-t border-white/10 pt-4">
-                            <span class="gold-text font-extrabold text-sm">₹8.5 Cr onwards</span>
-                            <span class="btn-futuristic-3d text-[#D4AF37] text-[10px] px-4 py-1.5 rounded-full font-bold">View Specs ➔</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Agricultural Land -->
-                <div class="futuristic-card rounded-3xl overflow-hidden cursor-pointer group" onclick="openModal('Agricultural Lands & Khet', 'NCR Outskirts & Prime Expressway Zones', 'Fertile agricultural land, highway connectivity, clear title deeds, ideal for farmhouses, future developments, or long-term land banking.', '₹50 Lakhs per Acre onwards', 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80', ['Clear Title Deed', 'Highway Access', 'Water Connection', 'Fertile Soil'])">
-                    <div class="relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80" class="w-full h-60 object-cover group-hover:scale-110 transition duration-500">
-                        <span class="absolute top-3 left-3 bg-black/80 backdrop-blur-md text-[#D4AF37] border border-[#D4AF37]/40 text-[10px] px-3 py-1 rounded-full font-bold uppercase">Agricultural Land / Khet</span>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-syne text-2xl text-white font-bold">Prime Farmhouses & Khet</h3>
-                        <p class="text-gray-400 text-xs mt-2">Agricultural Land Buying, Selling & Land Banking.</p>
-                        <div class="mt-5 flex justify-between items-center border-t border-white/10 pt-4">
-                            <span class="gold-text font-extrabold text-sm">₹50 L / Acre onwards</span>
-                            <span class="btn-futuristic-3d text-[#D4AF37] text-[10px] px-4 py-1.5 rounded-full font-bold">View Specs ➔</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Sky Villa Option -->
-                <div class="futuristic-card rounded-3xl overflow-hidden cursor-pointer group" onclick="openModal('5BHK Rooftop Sky Villa', 'Indirapuram Exclusive', 'Private outdoor gazebos, rooftop lounge lighting, marble bathrooms with glass showers, and home theater walls.', '₹3.5 Cr - ₹8.0 Cr', 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80', ['Private Rooftop Gazebo', 'Home Theater Wall', 'Smart Home Automation', 'Jacuzzi'])">
-                    <div class="relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" class="w-full h-60 object-cover group-hover:scale-110 transition duration-500">
-                        <span class="absolute top-3 left-3 bg-black/80 backdrop-blur-md text-[#D4AF37] border border-[#D4AF37]/40 text-[10px] px-3 py-1 rounded-full font-bold uppercase">Exclusive Sky Villa</span>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-syne text-2xl text-white font-bold">Rooftop Gazebo Villa</h3>
-                        <p class="text-gray-400 text-xs mt-2">5BHK Ultra-Luxury Villa with Private Elevator Access.</p>
-                        <div class="mt-5 flex justify-between items-center border-t border-white/10 pt-4">
-                            <span class="gold-text font-extrabold text-sm">₹3.5 Cr onwards</span>
-                            <span class="btn-futuristic-3d text-[#D4AF37] text-[10px] px-4 py-1.5 rounded-full font-bold">View Specs ➔</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Independent Plots -->
-                <div class="futuristic-card rounded-3xl overflow-hidden cursor-pointer group" onclick="openModal('Freehold Residential Plots', 'Ghaziabad Sector Zones', 'GDA approved freehold residential plots, Gated community, ready for immediate construction.', '₹1.2 Cr onwards', 'https://images.unsplash.com/photo-1524813686514-a57563d77965?auto=format&fit=crop&w=800&q=80', ['GDA Approved', 'Freehold Title', 'Gated Community', 'Immediate Registry'])">
-                    <div class="relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1524813686514-a57563d77965?auto=format&fit=crop&w=800&q=80" class="w-full h-60 object-cover group-hover:scale-110 transition duration-500">
-                        <span class="absolute top-3 left-3 bg-black/80 backdrop-blur-md text-[#D4AF37] border border-[#D4AF37]/40 text-[10px] px-3 py-1 rounded-full font-bold uppercase">Freehold Plot / Land</span>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-syne text-2xl text-white font-bold">GDA Approved Plots</h3>
-                        <p class="text-gray-400 text-xs mt-2">Residential & Commercial Plots for Purchase.</p>
-                        <div class="mt-5 flex justify-between items-center border-t border-white/10 pt-4">
-                            <span class="gold-text font-extrabold text-sm">₹1.2 Cr onwards</span>
-                            <span class="btn-futuristic-3d text-[#D4AF37] text-[10px] px-4 py-1.5 rounded-full font-bold">View Specs ➔</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- TAB 2: OWNER & TEAM -->
-        <div id="team-tab" class="tab-content hidden py-8">
-            <div class="futuristic-card rounded-3xl p-8 md:p-12 grid md:grid-cols-3 gap-8 items-center mb-12">
-                <div class="text-center md:text-left">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" class="w-40 h-40 rounded-3xl object-cover mx-auto md:mx-0 border-2 border-[#D4AF37] shadow-[0_0_20px_rgba(212,175,55,0.4)]">
-                    <h4 class="font-syne text-3xl gold-text font-bold mt-4">PD INDIRAPURAM</h4>
-                    <p class="text-gray-400 text-xs">Founder & Managing Director</p>
-                </div>
-                <div class="md:col-span-2">
-                    <span class="gold-text text-xs uppercase tracking-widest font-mono font-bold">Leadership Vision</span>
-                    <h3 class="font-syne text-3xl md:text-4xl text-white mt-1 mb-4 font-bold">"Curating High-Value Flats, Commercial Assets & Land Deals."</h3>
-                    <p class="text-gray-300 text-xs md:text-sm leading-relaxed mb-6 font-light">
-                        Operating with absolute transparency, market intelligence, and elite client ethics, our team ensures every investment in Apex D'Rio, Saya Gold Avenue, Commercial Buildings, and Agricultural Lands delivers supreme ROI.
-                    </p>
-                    <p class="text-[#D4AF37] text-xs font-bold flex items-center gap-2">
-                        📍 G-33 / G-10, Arora Shoppers Park, Shakti Khand 2, Indirapuram, Ghaziabad
-                    </p>
-                </div>
-            </div>
-
-            <h3 class="font-syne text-3xl gold-text text-center mb-8 uppercase font-bold">Elite Advisory Team</h3>
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="futuristic-card p-6 rounded-3xl text-center">
-                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80" class="w-24 h-24 rounded-full object-cover mx-auto mb-4 border-2 border-[#D4AF37]">
-                    <h4 class="font-syne text-2xl text-white font-bold">Aman Sharma</h4>
-                    <p class="gold-text text-xs mb-4">Senior Luxury Property Broker</p>
-                    <a href="https://wa.me/919990345444?text=Hi%20Aman,%20I%20want%20VIP%20consultation." target="_blank" class="btn-futuristic-3d text-white inline-block px-6 py-2.5 rounded-xl text-xs font-bold uppercase">Contact Agent</a>
-                </div>
-                <div class="futuristic-card p-6 rounded-3xl text-center">
-                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=300&q=80" class="w-24 h-24 rounded-full object-cover mx-auto mb-4 border-2 border-[#D4AF37]">
-                    <h4 class="font-syne text-2xl text-white font-bold">Rohit Verma</h4>
-                    <p class="gold-text text-xs mb-4">Commercial Buildings & Land Lead</p>
-                    <a href="https://wa.me/919990345444?text=Hi%20Rohit,%20I%20want%20land/commercial%20advice." target="_blank" class="btn-futuristic-3d text-white inline-block px-6 py-2.5 rounded-xl text-xs font-bold uppercase">Contact Agent</a>
-                </div>
-                <div class="futuristic-card p-6 rounded-3xl text-center">
-                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=300&q=80" class="w-24 h-24 rounded-full object-cover mx-auto mb-4 border-2 border-[#D4AF37]">
-                    <h4 class="font-syne text-2xl text-white font-bold">Priya Singh</h4>
-                    <p class="gold-text text-xs mb-4">Leasing & International Relations</p>
-                    <a href="https://wa.me/919990345444?text=Hi%20Priya,%20I%20want%20rental/buying%20guidance." target="_blank" class="btn-futuristic-3d text-white inline-block px-6 py-2.5 rounded-xl text-xs font-bold uppercase">Contact Agent</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- TAB 3: CALCULATOR -->
-        <div id="calculator-tab" class="tab-content hidden py-8">
-            <div class="futuristic-card rounded-3xl p-8 md:p-12 max-w-2xl mx-auto">
-                <span class="gold-text text-xs font-mono uppercase tracking-widest font-bold">Financial Intelligence Engine</span>
-                <h3 class="font-syne text-3xl md:text-4xl text-white mt-1 mb-6 font-bold">Yield & ROI Calculator</h3>
-                
-                <div class="space-y-5">
-                    <div>
-                        <label class="block text-gray-400 text-xs mb-2 uppercase font-bold">Estimated Investment Value (₹ Cr)</label>
-                        <input type="number" id="investVal" value="2.5" oninput="calculateROI()" class="w-full bg-black/60 border border-white/20 rounded-2xl px-5 py-4 text-sm text-white focus:border-[#D4AF37] outline-none transition">
-                    </div>
-                    <div>
-                        <label class="block text-gray-400 text-xs mb-2 uppercase font-bold">Expected Annual Yield Rate (%)</label>
-                        <input type="number" id="yieldRate" value="7.5" oninput="calculateROI()" class="w-full bg-black/60 border border-white/20 rounded-2xl px-5 py-4 text-sm text-white focus:border-[#D4AF37] outline-none transition">
-                    </div>
-
-                    <div class="border-t border-white/10 pt-6 mt-6 grid grid-cols-2 gap-4 text-center">
-                        <div class="bg-black/80 p-5 rounded-2xl border border-[#D4AF37]/40 shadow-inner">
-                            <span class="text-gray-400 text-[10px] uppercase font-bold">Est. Annual Income</span>
-                            <h4 id="annualIncome" class="font-syne text-2xl md:text-3xl gold-text font-bold mt-1">₹ 18.75 Lakhs</h4>
-                        </div>
-                        <div class="bg-black/80 p-5 rounded-2xl border border-[#D4AF37]/40 shadow-inner">
-                            <span class="text-gray-400 text-[10px] uppercase font-bold">5-Year Capital Forecast</span>
-                            <h4 id="futureVal" class="font-syne text-2xl md:text-3xl gold-text font-bold mt-1">₹ 3.63 Cr</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- TAB 4: VIP FORM -->
-        <div id="form-tab" class="tab-content hidden py-8">
-            <div class="futuristic-card rounded-3xl p-8 md:p-12 max-w-3xl mx-auto">
-                <div class="text-center mb-8">
-                    <span class="gold-text text-xs uppercase tracking-widest font-mono font-bold">⚡ Confidential Concierge Desk</span>
-                    <h3 class="font-syne text-3xl md:text-4xl text-white mt-1 font-bold">VIP Buyer / Seller Application</h3>
-                    <p class="text-gray-400 text-xs mt-2">Fill in details for personalized portfolio curation or property selling assistance.</p>
-                </div>
-
-                <form onsubmit="event.preventDefault(); window.location.href='https://wa.me/919990345444?text=Hello%20PD%20INDIRAPURAM,%20I%20have%20submitted%20a%20detailed%20VIP%20Buyer/Seller%20Application.';" class="space-y-5">
-                    <div class="grid md:grid-cols-2 gap-5">
-                        <div>
-                            <label class="block text-gray-400 text-[11px] mb-2 uppercase font-bold">Full Name</label>
-                            <input type="text" required placeholder="Investor / Owner Name" class="w-full bg-black/60 border border-white/20 rounded-2xl px-5 py-4 text-xs text-white focus:border-[#D4AF37] outline-none">
-                        </div>
-                        <div>
-                            <label class="block text-gray-400 text-[11px] mb-2 uppercase font-bold">Phone Number</label>
-                            <input type="tel" required placeholder="+91 XXXXX XXXXX" class="w-full bg-black/60 border border-white/20 rounded-2xl px-5 py-4 text-xs text-white focus:border-[#D4AF37] outline-none">
-                        </div>
-                    </div>
-
-                    <div class="grid md:grid-cols-3 gap-5">
-                        <div>
-                            <label class="block text-gray-400 text-[11px] mb-2 uppercase font-bold">Property Interest</label>
-                            <select class="w-full bg-black/60 border border-white/20 rounded-2xl px-4 py-4 text-xs text-white focus:border-[#D4AF37] outline-none">
-                                <option>Residential Flat (Buy / Rent)</option>
-                                <option>Commercial Building (Buy / Rent)</option>
-                                <option>Agricultural Land / Khet</option>
-                                <option>Sell My Property / Land</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-gray-400 text-[11px] mb-2 uppercase font-bold">Budget / Valuation</label>
-                            <select class="w-full bg-black/60 border border-white/20 rounded-2xl px-4 py-4 text-xs text-white focus:border-[#D4AF37] outline-none">
-                                <option>₹50 Lakhs – ₹1.5 Cr</option>
-                                <option>₹1.5 Cr – ₹5.0 Cr</option>
-                                <option>₹5.0 Cr + (Ultra Luxury / Building / Land)</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-gray-400 text-[11px] mb-2 uppercase font-bold">Timeline</label>
-                            <select class="w-full bg-black/60 border border-white/20 rounded-2xl px-4 py-4 text-xs text-white focus:border-[#D4AF37] outline-none">
-                                <option>Immediate Purchase / Sale</option>
-                                <option>Within 30 Days</option>
-                                <option>Future Investment</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="w-full btn-futuristic-3d text-white font-extrabold py-5 rounded-2xl text-xs uppercase tracking-widest shadow-2xl">
-                        Submit VIP Application to Management
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Matrix -->
-    <section class="py-16 bg-[#050A07] border-y border-[#D4AF37]/30 px-4">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="font-syne text-3xl md:text-5xl gold-text text-center mb-2 uppercase font-extrabold">Complete Service Matrix</h2>
-            <p class="text-center text-gray-400 text-xs mb-10">All 19 Specialized Real Estate Categories Retained</p>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="futuristic-card p-4 rounded-2xl"><p class="text-gray-300 text-xs font-semibold">1. Appraisals</p></div>
-                <div class="futuristic-card p-4 rounded-2xl"><p class="text-gray-300 text-xs font-semibold">2. Buying & Sales Assistance</p></div>
-                <div class="futuristic-card p-4 rounded-2xl"><p class="text-gray-300 text-xs font-semibold">3. Commercial Consulting</p></div>
-                <div class="futuristic-card p-4 rounded-2xl"><p class="text-gray-300 text-xs font-semibold">4. Comparative Market Analysis</p></div>
-                <div class="futuristic-card p-4 rounded-2xl"><p class="text-gray-300 text-xs font-semibold">5. Condo Sales</p></div>
-                <div class="futuristic-card p-4 rounded-2xl"><p class="text-gray-300 text-xs font-semibold">6. First-time Home Buyer</p></div>
-                <div class="futuristic-card p-4 rounded-2xl"><p class="text-gray-300 text-xs font-semibold">7. Foreclosed Property Sales</p></div>
-                <div class="futuristic-card p-4 rounded-2xl"><p class="text-gray-300 text-xs font-semibold">8. Home Staging & Photography</p></div>
-                <div class="futuristic-card p-4 rounded-2xl"><p class="text-gray-300 text-xs font-semibold">9. International Sales</p></div>
-                <div class="futuristic-card p-4 rounded-2xl"><p class="text-gray-300 text-xs font-semibold">10. Land & Khet Buying & Sales</p></div>
-                <div class="futuristic-card p-4 rounded-2xl"><p class="text-gray-300 text-xs font-semibold">11. Luxury Property Sales</p></div>
-                <div class="futuristic-card p-4 rounded-2xl"><p class="text-gray-300 text-xs font-semibold">12. Mortgage & Lending Services</p></div>
-                <div class="futuristic-card p-4 rounded-2xl"><p class="text-gray-300 text-xs font-semibold">13. New Construction</p></div>
-                <div class="futuristic-card p-4 rounded-2xl"><p class="text-gray-300 text-xs font-semibold">14. Leasing & Rental</p></div>
-                <div class="futuristic-card p-4 rounded-2xl"><p class="text-gray-300 text-xs font-semibold">15. Property Development</p></div>
-                <div class="futuristic-card p-4 rounded-2xl"><p class="text-gray-300 text-xs font-semibold">16. Property Investment</p></div>
-                <div class="futuristic-card p-4 rounded-2xl"><p class="text-gray-300 text-xs font-semibold">17. Property Marketing</p></div>
-                <div class="futuristic-card p-4 rounded-2xl"><p class="text-gray-300 text-xs font-semibold">18. Residential Consulting</p></div>
-                <div class="futuristic-card p-4 rounded-2xl col-span-2 md:col-span-1"><p class="text-gray-300 text-xs font-semibold">19. Seller's Agent Services</p></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Google Maps Card Navigation -->
-    <section class="py-14 px-4 max-w-4xl mx-auto">
-        <a href="https://www.google.com/maps/search/PD+INDIRAPURAM+property+dealer+Shakti+Khand+2+Indirapuram" target="_blank" class="block futuristic-card p-8 rounded-3xl hover:border-[#D4AF37] transition text-center md:text-left group">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                    <span class="gold-text text-xs uppercase font-mono font-bold">📍 Verified Business Profile</span>
-                    <h4 class="font-syne text-3xl text-white font-bold mt-1">PD INDIRAPURAM property dealer</h4>
-                    <p class="text-gray-300 text-xs mt-1">G-33 / G-10, Arora Shoppers Park, Shakti Khand 2, Indirapuram, Ghaziabad, UP 201014</p>
+                  <label className="block text-xs font-bold text-amber-400 uppercase tracking-wider mb-2">Property Interest</label>
+                  <select 
+                    value={formData.propertyType}
+                    onChange={(e) => setFormData({...formData, propertyType: e.target.value})}
+                    className="w-full px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-slate-100 text-sm focus:outline-none focus:border-amber-500 transition-colors"
+                  >
+                    <option value="Flats & Apartments">Flats & Apartments</option>
+                    <option value="Plots & Commercial Land">Plots & Commercial Land</option>
+                    <option value="Corporate Office Space">Corporate Office Space</option>
+                  </select>
                 </div>
-                <div class="btn-futuristic-3d text-white px-8 py-4 rounded-2xl text-xs font-extrabold uppercase whitespace-nowrap group-hover:scale-105 transition">
-                    Open Official Google Maps ➔
-                </div>
-            </div>
-        </a>
-    </section>
 
-    <!-- Modal -->
-    <div id="modal" class="fixed inset-0 bg-black/90 backdrop-blur-2xl z-50 hidden flex items-center justify-center p-4">
-        <div class="futuristic-card max-w-xl w-full rounded-3xl p-6 md:p-8 relative border border-[#D4AF37] max-h-[90vh] overflow-y-auto">
-            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl font-bold z-10">✕</button>
-            
-            <div class="relative rounded-2xl overflow-hidden mb-5">
-                <img id="modalImg" src="" class="w-full h-56 object-cover">
-                <span class="absolute top-3 left-3 bg-black/80 text-[#D4AF37] text-[10px] px-3 py-1 rounded-full font-bold uppercase border border-[#D4AF37]/40">Verified Property</span>
-            </div>
-
-            <span class="gold-text text-[10px] font-mono uppercase font-bold">Developer Specification Sheet</span>
-            <h3 id="modalTitle" class="font-syne text-3xl text-white font-bold mt-1"></h3>
-            <p id="modalLoc" class="text-xs gold-text mb-3 font-semibold"></p>
-            <p id="modalDesc" class="text-gray-300 text-xs leading-relaxed mb-4 font-light"></p>
-            
-            <div class="mb-6">
-                <p class="text-[10px] text-gray-400 uppercase font-bold mb-2">Key Amenities & Highlights:</p>
-                <div id="modalTags" class="flex flex-wrap gap-2"></div>
-            </div>
-
-            <div class="border-t border-white/10 pt-4 flex flex-wrap justify-between items-center gap-4">
                 <div>
-                    <span class="text-[10px] text-gray-400 uppercase">Valuation</span>
-                    <h4 id="modalPrice" class="font-syne text-xl text-white font-bold"></h4>
+                  <label className="block text-xs font-bold text-amber-400 uppercase tracking-wider mb-2">Estimated Budget</label>
+                  <select 
+                    value={formData.budget}
+                    onChange={(e) => setFormData({...formData, budget: e.target.value})}
+                    className="w-full px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-slate-100 text-sm focus:outline-none focus:border-amber-500 transition-colors"
+                  >
+                    <option value="₹1 Cr - ₹5 Cr">₹1 Cr - ₹5 Cr</option>
+                    <option value="₹5 Cr - ₹15 Cr">₹5 Cr - ₹15 Cr</option>
+                    <option value="₹15 Cr+">₹15 Cr+</option>
+                  </select>
                 </div>
-                <div class="flex gap-2">
-                    <a href="https://www.google.com/maps/search/PD+INDIRAPURAM+property+dealer+Shakti+Khand+2+Indirapuram" target="_blank" class="bg-blue-600/30 text-blue-400 border border-blue-500/40 px-4 py-2.5 rounded-xl text-xs font-bold uppercase hover:bg-blue-600/50 transition">Location</a>
-                    <a id="modalWA" href="#" target="_blank" class="btn-futuristic-3d text-white px-5 py-2.5 rounded-xl text-xs font-bold uppercase flex items-center gap-1.5">WhatsApp Inquiry</a>
-                </div>
-            </div>
+              </div>
+
+              <button 
+                type="submit" 
+                className="w-full py-4 mt-4 rounded-xl bg-gradient-to-r from-amber-500 to-amber-400 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-amber-500/20 transition-all active:scale-95 cursor-pointer"
+              >
+                <Send className="w-4 h-4" /> Send Enquiry via WhatsApp
+              </button>
+            </form>
+          </div>
         </div>
+      </section>
+
+      {/* ----------------- FOOTER SECTION WITH SOCIAL LINKS ----------------- */}
+      <footer id="contact" className="bg-slate-950 border-t border-slate-900 pt-16 pb-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-slate-900">
+            
+            <div className="space-y-4 md:col-span-2">
+              <div className="flex items-center gap-3">
+                <div className="h-9 w-9 rounded-xl bg-amber-500 flex items-center justify-center">
+                  <Building2 className="w-5 h-5 text-slate-950" />
+                </div>
+                <span className="text-lg font-bold text-white">Zippy Real Estate</span>
+              </div>
+              <p className="text-slate-400 text-sm max-w-sm leading-relaxed">
+                Empowering investors with high-yield commercial hubs, clear-title land banks, and luxury lifestyle residences.
+              </p>
+              
+              {/* Social Channels */}
+              <div className="flex items-center gap-3 pt-2">
+                <a href="#" className="p-2.5 rounded-xl bg-slate-900 text-slate-400 hover:text-amber-400 hover:bg-slate-800 transition-all"><Instagram className="w-4 h-4" /></a>
+                <a href="#" className="p-2.5 rounded-xl bg-slate-900 text-slate-400 hover:text-amber-400 hover:bg-slate-800 transition-all"><Linkedin className="w-4 h-4" /></a>
+                <a href="#" className="p-2.5 rounded-xl bg-slate-900 text-slate-400 hover:text-amber-400 hover:bg-slate-800 transition-all"><Facebook className="w-4 h-4" /></a>
+                <a href="#" className="p-2.5 rounded-xl bg-slate-900 text-slate-400 hover:text-amber-400 hover:bg-slate-800 transition-all"><Twitter className="w-4 h-4" /></a>
+                <a href="#" className="p-2.5 rounded-xl bg-slate-900 text-slate-400 hover:text-amber-400 hover:bg-slate-800 transition-all"><MessageSquare className="w-4 h-4" /></a>
+              </div>
+            </div>
+
+            <div>
+              <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-4">Quick Links</h4>
+              <ul className="space-y-2 text-sm text-slate-400">
+                <li><a href="#properties" className="hover:text-amber-400 transition-colors">Commercial Hubs</a></li>
+                <li><a href="#properties" className="hover:text-amber-400 transition-colors">Agricultural Plots</a></li>
+                <li><a href="#properties" className="hover:text-amber-400 transition-colors">Luxury Apartments</a></li>
+                <li><a href="#about" className="hover:text-amber-400 transition-colors">Legal Verification</a></li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-4">Direct Contact</h4>
+              <div className="space-y-3 text-sm text-slate-400">
+                <div className="flex items-center gap-2">
+                  <Phone className="w-4 h-4 text-amber-500" /> +91 (VIP Direct Line)
+                </div>
+                <div className="flex items-center gap-2">
+                  <Mail className="w-4 h-4 text-amber-500" /> luxury@zippyrealestate.com
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500">
+            <p>© {new Date().getFullYear()} Zippy Real Estate. All rights reserved.</p>
+            <p className="mt-2 sm:mt-0">Designed for VIP Real Estate Deals</p>
+          </div>
+        </div>
+      </footer>
+
     </div>
-
-    <!-- JavaScript Functions -->
-    <script>
-        function switchTab(tabId) {
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-            document.querySelectorAll('.tab-btn').forEach(el => {
-                el.classList.remove('active');
-                el.classList.add('text-gray-300');
-            });
-            
-            document.getElementById(tabId).classList.remove('hidden');
-            document.getElementById('btn-' + tabId).classList.add('active');
-            document.getElementById('btn-' + tabId).classList.remove('text-gray-300');
-        }
-
-        function calculateROI() {
-            let val = parseFloat(document.getElementById('investVal').value) || 0;
-            let yieldRate = parseFloat(document.getElementById('yieldRate').value) || 0;
-            
-            let annual = (val * 10000000 * (yieldRate / 100)) / 100000;
-            let future = val * Math.pow(1 + 0.08, 5);
-            
-            document.getElementById('annualIncome').innerText = '₹ ' + annual.toFixed(2) + ' Lakhs';
-            document.getElementById('futureVal').innerText = '₹ ' + future.toFixed(2) + ' Cr';
-        }
-
-        function openModal(title, loc, desc, price, imgUrl, tags) {
-            document.getElementById('modalTitle').innerText = title;
-            document.getElementById('modalLoc').innerText = loc;
-            document.getElementById('modalDesc').innerText = desc;
-            document.getElementById('modalPrice').innerText = price;
-            document.getElementById('modalImg').src = imgUrl;
-
-            let tagsContainer = document.getElementById('modalTags');
-            tagsContainer.innerHTML = '';
-            tags.forEach(tag => {
-                let span = document.createElement('span');
-                span.className = 'bg-[#D4AF37]/10 text-[#D4AF37] border border-[#D4AF37]/30 text-[10px] px-3 py-1 rounded-lg font-medium';
-                span.innerText = tag;
-                tagsContainer.appendChild(span);
-            });
-
-            document.getElementById('modalWA').href = 'https://wa.me/919990345444?text=Hi,%20I%20want%20the%20details%20and%20pricing%20for%20' + encodeURIComponent(title);
-            document.getElementById('modal').classList.remove('hidden');
-        }
-
-        function closeModal() {
-            document.getElementById('modal').classList.add('hidden');
-        }
-    </script>
-
-</body>
-</html>
+  );
+}
