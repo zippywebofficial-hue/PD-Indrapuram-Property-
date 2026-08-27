@@ -13,6 +13,10 @@ export default function Page() {
   const [selectedProperty, setSelectedProperty] = useState(null);
   const [activeGalleryImg, setActiveGalleryImg] = useState('');
 
+  // Quick Viewing Modal State
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalPropertyTitle, setModalPropertyTitle] = useState('');
+
   // ROI Calculator State
   const [investVal, setInvestVal] = useState(2.5);
   const [yieldRate, setYieldRate] = useState(7.5);
@@ -46,6 +50,11 @@ export default function Page() {
     setSelectedProperty(property);
     setActiveGalleryImg(property.gallery[0]);
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const openVIPModal = (title) => {
+    setModalPropertyTitle(title);
+    setIsModalOpen(true);
   };
 
   const properties = [
@@ -143,11 +152,35 @@ export default function Page() {
 
   return (
     <div className="bg-[#030604] min-h-screen text-white font-sans selection:bg-[#D4AF37] selection:text-black">
-      {/* Import Custom Calligraphy / Script Font for Headlines */}
       <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@600;800&family=Syne:wght@600;800&display=swap');
+        
         .script-headline {
           font-family: 'Great Vibes', cursive !important;
+        }
+        .cinzel-font {
+          font-family: 'Cinzel', serif !important;
+        }
+        .gold-metallic-text {
+          background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+        .gold-metallic-bg {
+          background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 35%, #B38728 70%, #AA771C 100%);
+        }
+        .futuristic-card {
+          background: rgba(15, 20, 16, 0.75);
+          backdrop-filter: blur(16px);
+          -webkit-backdrop-filter: blur(16px);
+          border: 1px solid rgba(212, 175, 55, 0.3);
+          box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+        }
+        .tab-btn.active {
+          background: linear-gradient(135deg, #BF953F 0%, #B38728 100%);
+          color: #000;
+          font-weight: 800;
+          box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
         }
       `}</style>
 
@@ -155,26 +188,25 @@ export default function Page() {
       <nav className="fixed top-0 left-0 w-full z-50 backdrop-blur-2xl bg-[#030604]/90 border-b border-[#D4AF37]/30 px-4 md:px-8 py-3.5 flex justify-between items-center">
         <div className="flex items-center gap-3 cursor-pointer" onClick={() => switchTab('properties-tab')}>
           <div className="w-3.5 h-3.5 rounded-full bg-[#D4AF37] animate-ping shadow-[0_0_20px_#D4AF37]"></div>
-          <span className="font-syne text-lg md:text-2xl tracking-widest gold-text font-extrabold">PD INDIRAPURAM</span>
+          <span className="cinzel-font text-lg md:text-2xl tracking-widest gold-metallic-text font-extrabold">PD INDIRAPURAM</span>
         </div>
         <div className="flex items-center gap-3">
           <a href="https://instagram.com/pd_indirapuram_property_dealer" target="_blank" className="hidden md:flex border border-[#D4AF37]/40 hover:border-[#D4AF37] text-gray-300 px-3 py-1.5 rounded-xl text-xs font-bold items-center gap-1.5 transition">
             📸 Instagram
           </a>
           <a href="https://wa.me/919990345444?text=Greetings!%20I%20am%20interested%20in%20a%20VIP%20Property%20Consultation." target="_blank" className="bg-[#25D366] text-white px-3.5 py-1.5 rounded-xl font-extrabold text-xs uppercase flex items-center gap-1.5 shadow-[0_0_15px_rgba(37,211,102,0.4)]"> WhatsApp </a>
-          <a href="tel:09990345444" className="gold-gradient text-black px-3.5 py-1.5 rounded-xl font-extrabold text-xs uppercase shadow-[0_0_20px_rgba(212,175,55,0.5)]"> 👑 099903 45444 </a>
+          <a href="tel:09990345444" className="gold-metallic-bg text-black px-3.5 py-1.5 rounded-xl font-extrabold text-xs uppercase shadow-[0_0_20px_rgba(212,175,55,0.5)]"> 👑 099903 45444 </a>
         </div>
       </nav>
 
       {/* DEDICATED MULTI-PAGE PROPERTY VIEW SECTION */}
       {selectedProperty ? (
         <main className="pt-24 pb-16 px-4 max-w-7xl mx-auto">
-          <button onClick={() => setSelectedProperty(null)} className="mb-6 flex items-center gap-2 text-xs font-bold gold-text border border-[#D4AF37]/40 px-4 py-2 rounded-xl backdrop-blur-md hover:bg-[#D4AF37]/10 transition">
+          <button onClick={() => setSelectedProperty(null)} className="mb-6 flex items-center gap-2 text-xs font-bold gold-metallic-text border border-[#D4AF37]/40 px-4 py-2 rounded-xl backdrop-blur-md hover:bg-[#D4AF37]/10 transition">
             ➔ Back to All Properties
           </button>
 
           <div className="grid md:grid-cols-12 gap-8">
-            {/* Gallery Column */}
             <div className="md:col-span-7 space-y-4">
               <div className="relative rounded-3xl overflow-hidden border border-[#D4AF37]/40 h-[380px] md:h-[480px] shadow-[0_0_30px_rgba(212,175,55,0.15)]">
                 <img src={activeGalleryImg} className="w-full h-full object-cover transition duration-500" alt={selectedProperty.title} />
@@ -189,15 +221,14 @@ export default function Page() {
               </div>
             </div>
 
-            {/* Property Information & Broker Desk Column */}
             <div className="md:col-span-5 space-y-6">
               <div className="futuristic-card p-6 md:p-8 rounded-3xl border border-[#D4AF37]/40">
-                <span className="gold-text text-xs font-mono uppercase tracking-widest font-bold">Verified Real Estate Asset</span>
+                <span className="gold-metallic-text text-xs font-mono uppercase tracking-widest font-bold">Verified Real Estate Asset</span>
                 <h1 className="font-syne text-2xl md:text-3xl text-white font-extrabold mt-1">{selectedProperty.title}</h1>
                 <p className="text-gray-400 text-xs mt-1.5 flex items-center gap-1">📍 {selectedProperty.loc}</p>
                 <div className="my-4 py-3 border-y border-white/10 flex justify-between items-center">
                   <span className="text-xs text-gray-400 uppercase font-bold">Asking Price</span>
-                  <span className="gold-text font-extrabold text-xl">{selectedProperty.price}</span>
+                  <span className="gold-metallic-text font-extrabold text-xl">{selectedProperty.price}</span>
                 </div>
                 <p className="text-gray-300 text-xs leading-relaxed mb-6">{selectedProperty.desc}</p>
                 
@@ -210,9 +241,8 @@ export default function Page() {
                   </div>
                 </div>
 
-                {/* Assigned Broker Contact Box */}
                 <div className="bg-black/90 p-4 rounded-2xl border border-[#D4AF37]/50 mt-6">
-                  <span className="text-[9px] gold-text uppercase font-mono tracking-widest font-bold">Assigned Property Advisor</span>
+                  <span className="text-[9px] gold-metallic-text uppercase font-mono tracking-widest font-bold">Assigned Property Advisor</span>
                   <div className="flex items-center gap-3 mt-3">
                     <img src={selectedProperty.broker.photo} className="w-12 h-12 rounded-full object-cover border border-[#D4AF37]" />
                     <div>
@@ -221,8 +251,8 @@ export default function Page() {
                     </div>
                   </div>
                   <div className="grid grid-cols-2 gap-2 mt-4">
-                    <a href={`tel:${selectedProperty.broker.phone}`} className="gold-gradient text-black font-extrabold text-[11px] py-2.5 rounded-xl text-center uppercase shadow-[0_0_10px_rgba(212,175,55,0.3)]">Call Broker</a>
-                    <a href={`https://wa.me/91${selectedProperty.broker.phone}?text=Hello%20${selectedProperty.broker.name},%20I%20want%20details%20for%20${selectedProperty.title}`} target="_blank" className="bg-[#25D366] text-white font-extrabold text-[11px] py-2.5 rounded-xl text-center uppercase shadow-[0_0_10px_rgba(37,211,102,0.3)]">WhatsApp</a>
+                    <a href={`tel:${selectedProperty.broker.phone}`} className="gold-metallic-bg text-black font-extrabold text-[11px] py-2.5 rounded-xl text-center uppercase shadow-[0_0_10px_rgba(212,175,55,0.3)]">Call Broker</a>
+                    <button onClick={() => openVIPModal(selectedProperty.title)} className="bg-white/10 text-white font-extrabold text-[11px] py-2.5 rounded-xl border border-white/20 uppercase hover:bg-white/20 transition">Book Viewing</button>
                   </div>
                 </div>
               </div>
@@ -230,31 +260,34 @@ export default function Page() {
           </div>
         </main>
       ) : (
-        /* MAIN LANDING VIEW */
         <>
-          {/* Dubai-Style Hero Section with Background Video */}
+          {/* Dubai-Style Hero Section with Live Video Background */}
           <section className="relative min-h-[75vh] flex items-center justify-center text-center px-4 pt-24 pb-12 overflow-hidden">
-            <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover z-0 opacity-55">
-              <source src="https://assets.mixkit.co/videos/preview/mixkit-modern-real-estate-buildings-4246-large.mp4" type="video/mp4" />
+            <video 
+              autoPlay 
+              loop 
+              muted 
+              playsInline 
+              className="absolute inset-0 w-full h-full object-cover z-0 opacity-40"
+            >
+              <source src="https://assets.mixkit.co/videos/preview/mixkit-modern-city-skyscrapers-at-night-41221-large.mp4" type="video/mp4" />
             </video>
             <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-[#030604] z-0"></div>
             
             <div className="max-w-4xl z-10 relative">
               <div className="inline-block border border-[#D4AF37] backdrop-blur-xl bg-black/60 px-5 py-1.5 rounded-full mb-4 shadow-[0_0_20px_rgba(212,175,55,0.3)]">
-                <span className="gold-text text-[11px] uppercase tracking-widest font-bold">🏆 Premier Real Estate Enterprise • Ghaziabad</span>
+                <span className="gold-metallic-text text-[11px] uppercase tracking-widest font-bold">🏆 Premier Real Estate Enterprise • Ghaziabad</span>
               </div>
               
-              {/* STYLISH SCRIPT FONTS APPLIED TO HEADLINE */}
-              <h1 className="font-syne text-4xl md:text-7xl font-extrabold text-white tracking-wide leading-tight mb-3"> 
+              <h1 className="cinzel-font text-4xl md:text-7xl font-extrabold text-white tracking-wide leading-tight mb-3"> 
                 PD INDIRAPURAM <br /> 
-                <span className="script-headline gold-text text-4xl md:text-6xl font-normal block mt-2 capitalize"> 
+                <span className="script-headline gold-metallic-text text-4xl md:text-6xl font-normal block mt-2 capitalize"> 
                   Kingdom of Elite Estates 
                 </span> 
               </h1>
               
               <p className="text-gray-300 text-xs md:text-sm max-w-2xl mx-auto mb-8 font-light"> Buy, Sell, Lease & Invest in Luxury Flats, Sky Duplexes, Penthouses, Commercial Retail Plazas & Agricultural Lands. </p>
 
-              {/* Search Filter Box */}
               <div className="futuristic-card rounded-2xl p-3 md:p-4 max-w-3xl mx-auto border border-[#D4AF37]/50 shadow-[0_0_25px_rgba(212,175,55,0.2)]">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                   <div>
@@ -275,36 +308,34 @@ export default function Page() {
                     </select>
                   </div>
                   <div>
-                    <button onClick={() => switchTab('properties-tab')} className="w-full btn-futuristic-3d text-black gold-gradient font-extrabold text-xs py-2.5 rounded-xl uppercase tracking-wider">Filter Properties ➔</button>
+                    <button onClick={() => switchTab('properties-tab')} className="w-full text-black gold-metallic-bg font-extrabold text-xs py-2.5 rounded-xl uppercase tracking-wider shadow-[0_0_15px_rgba(212,175,55,0.4)]">Filter Properties ➔</button>
                   </div>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* MOVED STATS BADGES OUTSIDE & BELOW THE HERO SECTION */}
           <section className="relative -mt-6 z-20 px-4 max-w-5xl mx-auto">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="bg-black/90 backdrop-blur-xl p-4 rounded-2xl border border-[#D4AF37]/40 text-center shadow-[0_10px_25px_rgba(0,0,0,0.8)]">
-                <h4 className="font-syne text-2xl gold-text font-extrabold">500+</h4>
+                <h4 className="cinzel-font text-2xl gold-metallic-text font-extrabold">500+</h4>
                 <p className="text-[11px] text-gray-300 font-medium mt-1">Happy Families Housed</p>
               </div>
               <div className="bg-black/90 backdrop-blur-xl p-4 rounded-2xl border border-[#D4AF37]/40 text-center shadow-[0_10px_25px_rgba(0,0,0,0.8)]">
-                <h4 className="font-syne text-2xl gold-text font-extrabold">4.7 ★</h4>
+                <h4 className="cinzel-font text-2xl gold-metallic-text font-extrabold">4.7 ★</h4>
                 <p className="text-[11px] text-gray-300 font-medium mt-1">129+ Google Reviews</p>
               </div>
               <div className="bg-black/90 backdrop-blur-xl p-4 rounded-2xl border border-[#D4AF37]/40 text-center shadow-[0_10px_25px_rgba(0,0,0,0.8)]">
-                <h4 className="font-syne text-2xl gold-text font-extrabold">₹250Cr+</h4>
+                <h4 className="cinzel-font text-2xl gold-metallic-text font-extrabold">₹250Cr+</h4>
                 <p className="text-[11px] text-gray-300 font-medium mt-1">Transacted Assets</p>
               </div>
               <div className="bg-black/90 backdrop-blur-xl p-4 rounded-2xl border border-[#D4AF37]/40 text-center shadow-[0_10px_25px_rgba(0,0,0,0.8)]">
-                <h4 className="font-syne text-2xl gold-text font-extrabold">24 Hours</h4>
+                <h4 className="cinzel-font text-2xl gold-metallic-text font-extrabold">24 Hours</h4>
                 <p className="text-[11px] text-gray-300 font-medium mt-1">Open Desk Assistance</p>
               </div>
             </div>
           </section>
 
-          {/* Navigation Tabs */}
           <section className="py-10 px-4 max-w-7xl mx-auto">
             <div className="flex overflow-x-auto gap-2 pb-3 justify-start md:justify-center border-b border-[#D4AF37]/20">
               <button onClick={() => switchTab('properties-tab')} className={`tab-btn ${activeTab === 'properties-tab' ? 'active' : 'text-gray-300'} border border-[#D4AF37]/40 px-5 py-2.5 rounded-2xl text-xs uppercase font-extrabold whitespace-nowrap transition`}>🏢 Featured Properties</button>
@@ -314,10 +345,9 @@ export default function Page() {
               <button onClick={() => switchTab('location-tab')} className={`tab-btn ${activeTab === 'location-tab' ? 'active' : 'text-gray-300'} border border-[#D4AF37]/40 px-5 py-2.5 rounded-2xl text-xs uppercase font-extrabold whitespace-nowrap transition`}>📍 Head Office Map</button>
             </div>
 
-            {/* TAB 1: PROPERTIES CATALOGUE */}
             {activeTab === 'properties-tab' && (
               <div className="py-8">
-                <h2 className="font-syne text-2xl md:text-4xl gold-text text-center mb-2 uppercase font-extrabold">Exclusive Asset Portfolio</h2>
+                <h2 className="cinzel-font text-2xl md:text-4xl gold-metallic-text text-center mb-2 uppercase font-extrabold">Exclusive Asset Portfolio</h2>
                 <p className="text-center text-gray-400 text-xs mb-8">Click any property to open detailed multi-photo gallery & broker view</p>
                 <div className="grid md:grid-cols-2 gap-6">
                   {filteredProperties.map((p) => (
@@ -332,9 +362,9 @@ export default function Page() {
                         <div className="mt-4 flex justify-between items-center border-t border-white/10 pt-3">
                           <div>
                             <span className="text-[9px] text-gray-400 uppercase block font-bold">Valuation</span>
-                            <span className="gold-text font-extrabold text-xs">{p.price}</span>
+                            <span className="gold-metallic-text font-extrabold text-xs">{p.price}</span>
                           </div>
-                          <span className="btn-futuristic-3d gold-gradient text-black text-[10px] px-4 py-2 rounded-xl font-extrabold uppercase">View Detailed Page ➔</span>
+                          <span className="gold-metallic-bg text-black text-[10px] px-4 py-2 rounded-xl font-extrabold uppercase shadow-[0_0_10px_rgba(212,175,55,0.3)]">View Detailed Page ➔</span>
                         </div>
                       </div>
                     </div>
@@ -343,10 +373,9 @@ export default function Page() {
               </div>
             )}
 
-            {/* TAB 2: COMPREHENSIVE SERVICES */}
             {activeTab === 'services-tab' && (
               <div className="py-8 max-w-5xl mx-auto">
-                <h2 className="font-syne text-2xl md:text-4xl gold-text text-center mb-2 uppercase font-extrabold">Our Real Estate Capabilities</h2>
+                <h2 className="cinzel-font text-2xl md:text-4xl gold-metallic-text text-center mb-2 uppercase font-extrabold">Our Real Estate Capabilities</h2>
                 <p className="text-center text-gray-400 text-xs mb-8">Official Service Options provided at PD Indirapuram Property Dealer</p>
                 <div className="grid md:grid-cols-2 gap-4">
                   {servicesList.map((s, idx) => (
@@ -362,11 +391,10 @@ export default function Page() {
               </div>
             )}
 
-            {/* TAB 3: HOME LOAN EMI CALCULATOR */}
             {activeTab === 'emi-tab' && (
               <div className="py-8">
                 <div className="futuristic-card rounded-3xl p-6 md:p-10 max-w-3xl mx-auto border border-[#D4AF37]/40">
-                  <span className="gold-text text-xs font-mono uppercase tracking-widest font-bold">Mortgage Desk Engine</span>
+                  <span className="gold-metallic-text text-xs font-mono uppercase tracking-widest font-bold">Mortgage Desk Engine</span>
                   <h3 className="font-syne text-2xl md:text-3xl text-white mt-1 mb-5 font-bold">Smart Home Loan EMI Calculator</h3>
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-4">
@@ -385,7 +413,7 @@ export default function Page() {
                     </div>
                     <div className="bg-black/90 p-5 rounded-2xl border border-[#D4AF37]/50 flex flex-col justify-center text-center">
                       <span className="text-gray-400 text-xs uppercase font-bold">Estimated Monthly Payment</span>
-                      <h4 className="font-syne text-2xl md:text-3xl gold-text font-extrabold mt-2 mb-3">₹ {emiResult.toLocaleString('en-IN')} / mo</h4>
+                      <h4 className="cinzel-font text-2xl md:text-3xl gold-metallic-text font-extrabold mt-2 mb-3">₹ {emiResult.toLocaleString('en-IN')} / mo</h4>
                       <p className="text-[10px] text-gray-400">Direct mortgage assistance available through HDFC, SBI & ICICI Bank.</p>
                     </div>
                   </div>
@@ -393,29 +421,27 @@ export default function Page() {
               </div>
             )}
 
-            {/* TAB 4: ROI CALCULATOR */}
             {activeTab === 'calculator-tab' && (
               <div className="py-8">
                 <div className="futuristic-card rounded-3xl p-6 md:p-10 max-w-xl mx-auto">
-                  <span className="gold-text text-xs font-mono uppercase tracking-widest font-bold">Financial Advisory</span>
+                  <span className="gold-metallic-text text-xs font-mono uppercase tracking-widest font-bold">Financial Advisory</span>
                   <h3 className="font-syne text-2xl md:text-3xl text-white mt-1 mb-5 font-bold">Yield & ROI Forecast Calculator</h3>
                   <div className="space-y-4">
                     <div><label className="block text-gray-400 text-[11px] mb-1 font-bold">Investment Capital (₹ Cr)</label><input type="number" value={investVal} onChange={(e) => setInvestVal(e.target.value)} className="w-full bg-black/80 border border-white/20 rounded-xl px-4 py-3 text-xs text-white outline-none" /></div>
                     <div><label className="block text-gray-400 text-[11px] mb-1 font-bold">Expected Annual Yield Rate (%)</label><input type="number" value={yieldRate} onChange={(e) => setYieldRate(e.target.value)} className="w-full bg-black/80 border border-white/20 rounded-xl px-4 py-3 text-xs text-white outline-none" /></div>
                     <div className="border-t border-white/10 pt-4 mt-4 grid grid-cols-2 gap-3 text-center">
-                      <div className="bg-black/90 p-4 rounded-xl border border-[#D4AF37]/30"><span className="text-gray-400 text-[9px] uppercase">Annual Income</span><h4 className="font-syne text-xl gold-text font-bold mt-1">₹ {calcResults.annual} Lakhs</h4></div>
-                      <div className="bg-black/90 p-4 rounded-xl border border-[#D4AF37]/30"><span className="text-gray-400 text-[9px] uppercase">5-Yr Asset Value</span><h4 className="font-syne text-xl gold-text font-bold mt-1">₹ {calcResults.future} Cr</h4></div>
+                      <div className="bg-black/90 p-4 rounded-xl border border-[#D4AF37]/30"><span className="text-gray-400 text-[9px] uppercase">Annual Income</span><h4 className="cinzel-font text-xl gold-metallic-text font-bold mt-1">₹ {calcResults.annual} Lakhs</h4></div>
+                      <div className="bg-black/90 p-4 rounded-xl border border-[#D4AF37]/30"><span className="text-gray-400 text-[9px] uppercase">5-Yr Asset Value</span><h4 className="cinzel-font text-xl gold-metallic-text font-bold mt-1">₹ {calcResults.future} Cr</h4></div>
                     </div>
                   </div>
                 </div>
               </div>
             )}
 
-            {/* TAB 5: LOCATION MAP */}
             {activeTab === 'location-tab' && (
               <div className="py-8">
                 <div className="futuristic-card rounded-3xl p-6 max-w-4xl mx-auto">
-                  <span className="gold-text text-xs font-mono uppercase tracking-widest font-bold">Physical Desk Location</span>
+                  <span className="gold-metallic-text text-xs font-mono uppercase tracking-widest font-bold">Physical Desk Location</span>
                   <h3 className="font-syne text-2xl text-white font-bold mt-1 mb-2">Visit PD Indirapuram Office</h3>
                   <p className="text-gray-400 text-xs mb-4">G10, Arora Shoppers Park, Shakti Khand 2, Indirapuram, Ghaziabad, Uttar Pradesh 201014</p>
                   <div className="rounded-2xl overflow-hidden border border-[#D4AF37]/40 h-80">
@@ -426,42 +452,40 @@ export default function Page() {
             )}
           </section>
 
-          {/* Leadership & Advisory Team Section */}
           <section className="py-12 px-4 max-w-6xl mx-auto">
-            <span className="gold-text text-xs font-mono uppercase tracking-widest font-bold block text-center">Leadership & Experts</span>
-            <h2 className="font-syne text-2xl md:text-4xl text-white font-bold text-center mt-1 mb-8">Meet Our Senior Consultants</h2>
+            <span className="gold-metallic-text text-xs font-mono uppercase tracking-widest font-bold block text-center">Leadership & Experts</span>
+            <h2 className="cinzel-font text-2xl md:text-4xl text-white font-bold text-center mt-1 mb-8">Meet Our Senior Consultants</h2>
             <div className="grid md:grid-cols-3 gap-6">
               <div className="futuristic-card p-6 rounded-3xl text-center border border-[#D4AF37]/30">
                 <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=300&q=80" className="w-20 h-20 rounded-full mx-auto mb-3 object-cover border-2 border-[#D4AF37]" />
                 <h3 className="font-syne text-lg text-white font-bold">Pankaj Sharma</h3>
-                <p className="gold-text text-xs font-medium">Founder & Managing Director</p>
+                <p className="gold-metallic-text text-xs font-medium">Founder & Managing Director</p>
                 <p className="text-gray-400 text-xs mt-2">15+ Years expertise in luxury developments & commercial land acquisitions.</p>
               </div>
               <div className="futuristic-card p-6 rounded-3xl text-center border border-[#D4AF37]/30">
                 <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80" className="w-20 h-20 rounded-full mx-auto mb-3 object-cover border-2 border-[#D4AF37]" />
                 <h3 className="font-syne text-lg text-white font-bold">Neha Sharma</h3>
-                <p className="gold-text text-xs font-medium">Head of Residential Sales</p>
+                <p className="gold-metallic-text text-xs font-medium">Head of Residential Sales</p>
                 <p className="text-gray-400 text-xs mt-2">Specialist in high-end penthouses, duplexes, and Saya Gold Avenue listings.</p>
               </div>
               <div className="futuristic-card p-6 rounded-3xl text-center border border-[#D4AF37]/30">
                 <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=300&q=80" className="w-20 h-20 rounded-full mx-auto mb-3 object-cover border-2 border-[#D4AF37]" />
                 <h3 className="font-syne text-lg text-white font-bold">Suresh Tyagi</h3>
-                <p className="gold-text text-xs font-medium">Legal & Land Valuation Lead</p>
+                <p className="gold-metallic-text text-xs font-medium">Legal & Land Valuation Lead</p>
                 <p className="text-gray-400 text-xs mt-2">Expert in title verification, GDA clearances, and commercial lease deeds.</p>
               </div>
             </div>
           </section>
 
-          {/* Customer Reviews & Social Proof */}
           <section className="py-12 px-4 max-w-6xl mx-auto">
             <div className="futuristic-card p-8 rounded-3xl border border-[#D4AF37]/40">
               <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
                 <div>
-                  <span className="gold-text text-xs font-mono uppercase tracking-widest font-bold">Verified Google Reviews</span>
-                  <h2 className="font-syne text-2xl md:text-3xl text-white font-bold mt-1">Trusted By 500+ Property Owners</h2>
+                  <span className="gold-metallic-text text-xs font-mono uppercase tracking-widest font-bold">Verified Google Reviews</span>
+                  <h2 className="cinzel-font text-2xl md:text-3xl text-white font-bold mt-1">Trusted By 500+ Property Owners</h2>
                 </div>
                 <div className="flex items-center gap-3 bg-black/80 px-4 py-2.5 rounded-2xl border border-[#D4AF37]">
-                  <span className="font-syne text-2xl font-extrabold gold-text">4.7</span>
+                  <span className="cinzel-font text-2xl font-extrabold gold-metallic-text">4.7</span>
                   <div className="text-left">
                     <div className="text-amber-400 text-xs">★★★★★</div>
                     <span className="text-[10px] text-gray-400">129+ Verified Google Ratings</span>
@@ -484,11 +508,10 @@ export default function Page() {
             </div>
           </section>
 
-          {/* Social Media & Instant Contact Hub Section */}
           <section className="py-12 px-4 max-w-4xl mx-auto text-center">
             <div className="futuristic-card rounded-3xl p-6 md:p-10 border border-[#D4AF37]">
-              <span className="gold-text text-xs font-mono uppercase tracking-widest font-bold">Connect Directly</span>
-              <h2 className="font-syne text-2xl md:text-3xl text-white font-bold mt-1 mb-2">Follow Us & Book Private Site Visit</h2>
+              <span className="gold-metallic-text text-xs font-mono uppercase tracking-widest font-bold">Connect Directly</span>
+              <h2 className="cinzel-font text-2xl md:text-3xl text-white font-bold mt-1 mb-2">Follow Us & Book Private Site Visit</h2>
               <p className="text-gray-400 text-xs mb-6">Address: G10 Arora Shoppers Park, Shakti Khand 2, Indirapuram, Ghaziabad</p>
 
               <div className="flex justify-center gap-4 mb-8">
@@ -507,14 +530,30 @@ export default function Page() {
                   <option value="Land">Agricultural Land / Plot</option>
                   <option value="Home Loan">Mortgage & Home Loan Assistance</option>
                 </select>
-                <button type="submit" className="md:col-span-2 btn-futuristic-3d gold-gradient text-black font-extrabold text-xs py-3.5 rounded-xl uppercase tracking-widest mt-1">Request VIP Priority Callback 👑</button>
+                <button type="submit" className="md:col-span-2 gold-metallic-bg text-black font-extrabold text-xs py-3.5 rounded-xl uppercase tracking-widest mt-1 shadow-[0_0_20px_rgba(212,175,55,0.4)]">Request VIP Priority Callback 👑</button>
               </form>
             </div>
           </section>
         </>
       )}
 
-      {/* Footer */}
+      {isModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4">
+          <div className="bg-[#0b100d] border border-[#D4AF37] p-6 rounded-3xl max-w-md w-full relative shadow-[0_0_40px_rgba(212,175,55,0.3)]">
+            <button onClick={() => setIsModalOpen(false)} className="absolute top-4 right-4 text-gray-400 hover:text-white font-bold text-sm">✕</button>
+            <span className="gold-metallic-text text-[10px] font-mono uppercase tracking-widest block mb-1">VIP Consultation Request</span>
+            <h3 className="cinzel-font text-lg font-bold text-white mb-4">Book Viewing for: <span className="text-[#D4AF37]">{modalPropertyTitle}</span></h3>
+            
+            <form onSubmit={(e) => { e.preventDefault(); alert('VIP Viewing Request Sent! Assigned Advisor will call you within 15 minutes.'); setIsModalOpen(false); }} className="space-y-3">
+              <input type="text" placeholder="Full Name" required className="w-full bg-black/80 border border-white/20 rounded-xl p-3 text-xs text-white outline-none" />
+              <input type="tel" placeholder="Mobile Number" required className="w-full bg-black/80 border border-white/20 rounded-xl p-3 text-xs text-white outline-none" />
+              <input type="date" required className="w-full bg-black/80 border border-white/20 rounded-xl p-3 text-xs text-white outline-none" />
+              <button type="submit" className="w-full gold-metallic-bg text-black font-extrabold text-xs py-3 rounded-xl uppercase tracking-wider mt-2">Confirm Site Visit Booking 👑</button>
+            </form>
+          </div>
+        </div>
+      )}
+
       <footer className="border-t border-white/10 py-6 text-center text-xs text-gray-400">
         <p>© 2026 PD Indirapuram Property Dealer • All Rights Reserved.</p>
         <p className="text-[10px] text-gray-400 mt-1">Servicing Ahinsa Khand 1, Vaibhav Khand, Shakti Khand & NCR Expressway Zones</p>
