@@ -269,7 +269,7 @@ export default function Page() {
               preload="auto"
               className="absolute inset-0 w-full h-full object-cover z-0 opacity-40"
             >
-              <source src="/bg-video.mp4" type="video/mp4" />
+              <source src="/bg-vedio.mp4" type="video/mp4" />
             </video>
             <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-[#030604] z-0"></div>
             
