@@ -184,7 +184,7 @@ export default function Page() {
         }
       `}</style>
 
-      {/* Top Bar Navigation (Cleaned & Streamlined) */}
+      {/* Top Bar Navigation */}
       <nav className="fixed top-0 left-0 w-full z-50 backdrop-blur-2xl bg-[#030604]/90 border-b border-[#D4AF37]/30 px-4 md:px-8 py-4 flex justify-between items-center">
         <div className="flex items-center gap-3 cursor-pointer" onClick={() => switchTab('properties-tab')}>
           <div className="w-3.5 h-3.5 rounded-full bg-[#D4AF37] animate-ping shadow-[0_0_20px_#D4AF37]"></div>
@@ -259,16 +259,17 @@ export default function Page() {
         </main>
       ) : (
         <>
-          {/* Hero Section with High Quality Live Video Background */}
+          {/* Hero Section with Local Video Background */}
           <section className="relative min-h-[75vh] flex items-center justify-center text-center px-4 pt-24 pb-12 overflow-hidden">
             <video 
               autoPlay 
               loop 
               muted 
               playsInline 
+              preload="auto"
               className="absolute inset-0 w-full h-full object-cover z-0 opacity-40"
             >
-              <source src="https://assets.mixkit.co/videos/preview/mixkit-modern-city-skyscrapers-at-night-41221-large.mp4" type="video/mp4" />
+              <source src="/bg-video.mp4" type="video/mp4" />
             </video>
             <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-[#030604] z-0"></div>
             
@@ -528,11 +529,11 @@ export default function Page() {
             </div>
           </section>
 
-          {/* BRAND NEW 2026 EXCLUSIVE CONTACT & SOCIAL MEDIA HUB SECTION */}
+          {/* CONTACT & SOCIAL MEDIA HUB SECTION */}
           <section className="py-16 px-4 max-w-6xl mx-auto border-t border-[#D4AF37]/20 mt-12">
             <div className="text-center mb-10">
               <div className="inline-block border border-[#D4AF37]/50 bg-[#D4AF37]/10 px-4 py-1 rounded-full mb-3">
-                <span className="gold-metallic-text text-[10px] uppercase font-mono tracking-widest font-bold">2026 Official Connect Hub</span>
+                <span className="gold-metallic-text text-[10px] uppercase font-mono tracking-widest font-bold">Official Connect Hub</span>
               </div>
               <h2 className="cinzel-font text-3xl md:text-5xl text-white font-extrabold">GET IN TOUCH</h2>
               <p className="text-gray-400 text-xs mt-2">Direct desk access, real-time messaging & social media channels</p>
@@ -594,7 +595,7 @@ export default function Page() {
                 </div>
               </a>
 
-              {/* 2026 New X / Twitter Icon Channel */}
+              {/* X / Twitter Icon Channel */}
               <a href="https://x.com" target="_blank" className="futuristic-card p-5 rounded-2xl flex items-center gap-4 hover:border-white hover:scale-105 transition group">
                 <div className="w-12 h-12 rounded-xl bg-white/10 border border-white/30 flex items-center justify-center text-white group-hover:bg-white group-hover:text-black transition">
                   <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
