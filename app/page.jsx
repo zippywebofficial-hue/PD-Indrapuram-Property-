@@ -221,7 +221,7 @@ export default function Page() {
               <div className="grid grid-cols-4 gap-2 sm:gap-3">
                 {selectedProperty.gallery.map((img, i) => (
                   <div key={i} onClick={() => setActiveGalleryImg(img)} className={`rounded-lg sm:rounded-xl overflow-hidden border cursor-pointer h-16 sm:h-20 transition ${activeGalleryImg === img ? 'border-[#D4AF37] scale-95 shadow-[0_0_15px_#D4AF37]' : 'border-white/20 opacity-60 hover:opacity-100'}`}>
-                    <img src={img} className="w-full h-full object-cover" />
+                    <img src={img} className="w-full h-full object-cover" alt={`Gallery ${i}`} />
                   </div>
                 ))}
               </div>
@@ -250,7 +250,7 @@ export default function Page() {
                 <div className="bg-black/90 p-4 rounded-2xl border border-[#D4AF37]/50 mt-6">
                   <span className="text-[9px] gold-metallic-text uppercase font-mono tracking-widest font-bold">Assigned Property Advisor</span>
                   <div className="flex items-center gap-3 mt-3">
-                    <img src={selectedProperty.broker.photo} className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover border border-[#D4AF37]" />
+                    <img src={selectedProperty.broker.photo} className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover border border-[#D4AF37]" alt={selectedProperty.broker.name} />
                     <div>
                       <h4 className="font-syne text-sm font-bold text-white">{selectedProperty.broker.name}</h4>
                       <p className="text-[10px] text-gray-400">{selectedProperty.broker.role}</p>
@@ -267,20 +267,24 @@ export default function Page() {
         </main>
       ) : (
         <>
-          {/* Hero Section with Local Video Background */}
-          <section className="relative min-h-[70vh] sm:min-h-[75vh] flex items-center justify-center text-center px-4 pt-20 sm:pt-24 pb-12 overflow-hidden">
-            <video 
-  autoPlay 
-  loop 
-  muted 
-  playsInline 
-  className="w-full h-full object-cover"
->
-  <source src="https://res.cloudinary.com/ln7kck12/video/upload/bg-video.mp4" type="video/mp4" />
-  Your browser does not support the video tag.
-</video>
+          {/* Responsive Hero Section with Adaptive Video Background */}
+          <section className="relative min-h-[75vh] sm:min-h-[80vh] flex items-center justify-center text-center px-4 pt-24 pb-12 overflow-hidden">
+            
+            {/* Background Video Wrapper for Mobile & Desktop Adaptation */}
+            <div className="absolute inset-0 w-full h-full overflow-hidden z-0">
+              <video 
+                autoPlay 
+                loop 
+                muted 
+                playsInline 
+                className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -translate-x-1/2 -translate-y-1/2 object-cover"
+              >
+                <source src="https://res.cloudinary.com/ln7kck12/video/upload/bg-video.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
 
-            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-[#030604] z-0"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-[#030604] z-0"></div>
             
             <div className="max-w-4xl z-10 relative w-full">
               <div className="inline-block border border-[#D4AF37] backdrop-blur-xl bg-black/60 px-3.5 py-1.5 rounded-full mb-4 shadow-[0_0_20px_rgba(212,175,55,0.3)] max-w-full">
@@ -362,7 +366,7 @@ export default function Page() {
                     <div key={p.id} className="futuristic-card rounded-2xl sm:rounded-3xl overflow-hidden cursor-pointer group border border-[#D4AF37]/30 hover:border-[#D4AF37] transition flex flex-col justify-between" onClick={() => openPropertyDetail(p)}>
                       <div>
                         <div className="relative overflow-hidden h-48 sm:h-60">
-                          <img src={p.mainImg} className="w-full h-full object-cover group-hover:scale-110 transition duration-500" />
+                          <img src={p.mainImg} className="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt={p.title} />
                           <span className="absolute top-3 left-3 bg-black/80 backdrop-blur-md border border-[#D4AF37] text-white text-[9px] font-bold px-2.5 py-1 rounded-full uppercase">{p.category}</span>
                         </div>
                         <div className="p-4 sm:p-5">
@@ -469,19 +473,19 @@ export default function Page() {
             <h2 className="cinzel-font text-2xl sm:text-3xl md:text-4xl text-white font-bold text-center mt-1 mb-6 sm:mb-8">Meet Our Senior Consultants</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
               <div className="futuristic-card p-5 sm:p-6 rounded-2xl sm:rounded-3xl text-center border border-[#D4AF37]/30">
-                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=300&q=80" className="w-16 h-16 sm:w-20 sm:h-20 rounded-full mx-auto mb-3 object-cover border-2 border-[#D4AF37]" />
+                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=300&q=80" className="w-16 h-16 sm:w-20 sm:h-20 rounded-full mx-auto mb-3 object-cover border-2 border-[#D4AF37]" alt="Pankaj Sharma" />
                 <h3 className="font-syne text-base sm:text-lg text-white font-bold">Pankaj Sharma</h3>
                 <p className="gold-metallic-text text-xs font-medium">Founder & Managing Director</p>
                 <p className="text-gray-400 text-xs mt-2 leading-relaxed">15+ Years expertise in luxury developments & commercial land acquisitions.</p>
               </div>
               <div className="futuristic-card p-5 sm:p-6 rounded-2xl sm:rounded-3xl text-center border border-[#D4AF37]/30">
-                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80" className="w-16 h-16 sm:w-20 sm:h-20 rounded-full mx-auto mb-3 object-cover border-2 border-[#D4AF37]" />
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80" className="w-16 h-16 sm:w-20 sm:h-20 rounded-full mx-auto mb-3 object-cover border-2 border-[#D4AF37]" alt="Neha Sharma" />
                 <h3 className="font-syne text-base sm:text-lg text-white font-bold">Neha Sharma</h3>
                 <p className="gold-metallic-text text-xs font-medium">Head of Residential Sales</p>
                 <p className="text-gray-400 text-xs mt-2 leading-relaxed">Specialist in high-end penthouses, duplexes, and Saya Gold Avenue listings.</p>
               </div>
               <div className="futuristic-card p-5 sm:p-6 rounded-2xl sm:rounded-3xl text-center border border-[#D4AF37]/30 sm:col-span-2 md:col-span-1">
-                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=300&q=80" className="w-16 h-16 sm:w-20 sm:h-20 rounded-full mx-auto mb-3 object-cover border-2 border-[#D4AF37]" />
+                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=300&q=80" className="w-16 h-16 sm:w-20 sm:h-20 rounded-full mx-auto mb-3 object-cover border-2 border-[#D4AF37]" alt="Suresh Tyagi" />
                 <h3 className="font-syne text-base sm:text-lg text-white font-bold">Suresh Tyagi</h3>
                 <p className="gold-metallic-text text-xs font-medium">Legal & Land Valuation Lead</p>
                 <p className="text-gray-400 text-xs mt-2 leading-relaxed">Expert in title verification, GDA clearances, and commercial lease deeds.</p>
@@ -567,7 +571,7 @@ export default function Page() {
               </a>
 
               {/* WhatsApp Channel */}
-              <a href="https://wa.me/919990345444?text=Greetings!%20I%20am%20interested%20in%20a%20VIP%20Property%20Consultation." target="_blank" className="futuristic-card p-4 sm:p-5 rounded-2xl flex items-center gap-4 hover:border-[#25D366] hover:scale-105 transition group">
+              <a href="https://wa.me/919990345444?text=Greetings!%20I%20am%20interested%20in%20a%20VIP%20Property%20Consultation." target="_blank" rel="noreferrer" className="futuristic-card p-4 sm:p-5 rounded-2xl flex items-center gap-4 hover:border-[#25D366] hover:scale-105 transition group">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#25D366]/20 border border-[#25D366] flex items-center justify-center text-[#25D366] group-hover:bg-[#25D366] group-hover:text-white transition flex-shrink-0">
                   <svg className="w-5 h-5 sm:w-6 sm:h-6 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
                 </div>
@@ -589,7 +593,7 @@ export default function Page() {
               </a>
 
               {/* Instagram Channel */}
-              <a href="https://instagram.com/pd_indirapuram_property_dealer" target="_blank" className="futuristic-card p-4 sm:p-5 rounded-2xl flex items-center gap-4 hover:border-pink-500 hover:scale-105 transition group">
+              <a href="https://instagram.com/pd_indirapuram_property_dealer" target="_blank" rel="noreferrer" className="futuristic-card p-4 sm:p-5 rounded-2xl flex items-center gap-4 hover:border-pink-500 hover:scale-105 transition group">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-pink-500/20 border border-pink-500 flex items-center justify-center text-pink-500 group-hover:bg-pink-500 group-hover:text-white transition flex-shrink-0">
                   <svg className="w-5 h-5 sm:w-6 sm:h-6 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                 </div>
@@ -600,7 +604,7 @@ export default function Page() {
               </a>
 
               {/* LinkedIn Channel */}
-              <a href="https://linkedin.com" target="_blank" className="futuristic-card p-4 sm:p-5 rounded-2xl flex items-center gap-4 hover:border-sky-500 hover:scale-105 transition group">
+              <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="futuristic-card p-4 sm:p-5 rounded-2xl flex items-center gap-4 hover:border-sky-500 hover:scale-105 transition group">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-sky-500/20 border border-sky-500 flex items-center justify-center text-sky-500 group-hover:bg-sky-500 group-hover:text-white transition flex-shrink-0">
                   <svg className="w-5 h-5 sm:w-6 sm:h-6 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                 </div>
@@ -611,7 +615,7 @@ export default function Page() {
               </a>
 
               {/* X / Twitter Icon Channel */}
-              <a href="https://x.com" target="_blank" className="futuristic-card p-4 sm:p-5 rounded-2xl flex items-center gap-4 hover:border-white hover:scale-105 transition group">
+              <a href="https://x.com" target="_blank" rel="noreferrer" className="futuristic-card p-4 sm:p-5 rounded-2xl flex items-center gap-4 hover:border-white hover:scale-105 transition group">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white/10 border border-white/30 flex items-center justify-center text-white group-hover:bg-white group-hover:text-black transition flex-shrink-0">
                   <svg className="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                 </div>
