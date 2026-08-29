@@ -270,15 +270,16 @@ export default function Page() {
           {/* Hero Section with Local Video Background */}
           <section className="relative min-h-[70vh] sm:min-h-[75vh] flex items-center justify-center text-center px-4 pt-20 sm:pt-24 pb-12 overflow-hidden">
             <video 
-              autoPlay 
-              loop 
-              muted 
-              playsInline 
-              preload="auto"
-              className="absolute inset-0 w-full h-full object-cover z-0 opacity-90 brightness-110 contrast-105"
-            >
-              <source src="/bg-video.mp4" type="video/mp4" />
-            </video>
+  autoPlay 
+  loop 
+  muted 
+  playsInline 
+  className="w-full h-full object-cover"
+>
+  <source src="https://res.cloudinary.com/ln7kck12/video/upload/bg-video.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+
             <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-[#030604] z-0"></div>
             
             <div className="max-w-4xl z-10 relative w-full">
