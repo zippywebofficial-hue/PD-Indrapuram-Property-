@@ -275,11 +275,11 @@ export default function Page() {
               muted 
               playsInline 
               preload="auto"
-              className="absolute inset-0 w-full h-full object-cover z-0 opacity-40"
+              className="absolute inset-0 w-full h-full object-cover z-0 opacity-90 brightness-110 contrast-105"
             >
               <source src="/bg-video.mp4" type="video/mp4" />
             </video>
-            <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-[#030604] z-0"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-[#030604] z-0"></div>
             
             <div className="max-w-4xl z-10 relative w-full">
               <div className="inline-block border border-[#D4AF37] backdrop-blur-xl bg-black/60 px-3.5 py-1.5 rounded-full mb-4 shadow-[0_0_20px_rgba(212,175,55,0.3)] max-w-full">
