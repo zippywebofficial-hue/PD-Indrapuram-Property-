@@ -266,23 +266,40 @@ export default function Page() {
         </main>
       ) : (
         <>
-          {/* Responsive Hero Section */}
-          <section className="relative min-h-[75vh] sm:min-h-[80vh] flex items-center justify-center text-center px-4 pt-24 pb-12 overflow-hidden">
-            <div className="absolute inset-0 w-full h-full overflow-hidden z-0">
+          {/* ULTRA-RESPONSIVE HERO SECTION WITH PROFESSIONAL DUAL VIDEO ADAPTATION */}
+          <section className="relative min-h-[80vh] sm:min-h-[85vh] md:min-h-screen flex items-center justify-center text-center px-4 pt-24 pb-12 overflow-hidden">
+            
+            {/* Background Video Layer */}
+            <div className="absolute inset-0 w-full h-full overflow-hidden z-0 bg-black">
+              {/* Laptop/Desktop Video View (Horizontal Aspect Ratio) */}
               <video 
                 autoPlay 
                 loop 
                 muted 
                 playsInline 
-                className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -translate-x-1/2 -translate-y-1/2 object-cover"
+                className="hidden md:block absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -translate-x-1/2 -translate-y-1/2 object-cover object-center pointer-events-none"
+              >
+                <source src="https://res.cloudinary.com/ln7kck12/video/upload/bg-video.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+
+              {/* Mobile/Tablet Video View (Vertical/Portrait Optimized Aspect) */}
+              <video 
+                autoPlay 
+                loop 
+                muted 
+                playsInline 
+                className="block md:hidden absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -translate-x-1/2 -translate-y-1/2 object-cover object-center pointer-events-none"
               >
                 <source src="https://res.cloudinary.com/ln7kck12/video/upload/bg-video.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
             </div>
 
-            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-[#030604] z-0"></div>
+            {/* Gradient Dark Overlay for Superior Contrast & Readability */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-[#030604] z-0"></div>
             
+            {/* Hero Main Content */}
             <div className="max-w-4xl z-10 relative w-full">
               <div className="inline-block border border-[#D4AF37] backdrop-blur-xl bg-black/60 px-3.5 py-1.5 rounded-full mb-4 shadow-[0_0_20px_rgba(212,175,55,0.3)] max-w-full">
                 <span className="gold-metallic-text text-[9px] sm:text-[11px] uppercase tracking-wider sm:tracking-widest font-bold block truncate">🏆 Premier Real Estate Enterprise • Ghaziabad</span>
@@ -297,6 +314,7 @@ export default function Page() {
               
               <p className="text-gray-300 text-xs sm:text-sm max-w-2xl mx-auto mb-6 sm:mb-8 font-light leading-relaxed"> Buy, Sell, Lease & Invest in Luxury Flats, Sky Duplexes, Penthouses, Commercial Retail Plazas & Agricultural Lands. </p>
 
+              {/* Search Filter Box */}
               <div className="futuristic-card rounded-2xl p-3 sm:p-4 max-w-3xl mx-auto border border-[#D4AF37]/50 shadow-[0_0_25px_rgba(212,175,55,0.2)]">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5 sm:gap-3">
                   <div>
